@@ -1,0 +1,1586 @@
+<!-- R Commander Markdown Template -->
+
+M2.851 - Tipología y ciclo de vida de los datos 
+===============================================
+Práctica 2
+==========
+
+### Ana Caudevilla
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# include this code chunk as-is to set options
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+
+```{r echo=FALSE}
+# include this code chunk as-is to enable 3D graphs
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+# 1. Descripción del dataset
+Este dataset busca comprender mejor el estado de salud dental de la población.
+En este caso se plantea si a los países con mayor riqueza les supone un empeoramiento de la salud dental, porque consumen más dulces, o si al contrario les representa una ventaja, por disponer de mejor asistencia sanitaria o incluso de un mejor nivel educativo. 
+
+# 2. Carga y limpieza de los datos
+
+```{r}
+adultliteracy <- 
+  read.table("C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/adultliteracy.csv",
+   header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+```
+
+```{r}
+badteeth <- 
+  read.table("C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/badteeth.csv",
+   header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+```
+
+```{r}
+gdp <- 
+  read.table("C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/gdp.csv",
+   header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+```
+
+```{r}
+healthexpend <- 
+  read.table("C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/healthexpend.csv",
+   header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+```
+
+```{r}
+sugar_comsumption <- 
+  read.table("C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/sugar_consumption.csv",
+   header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+```
+### adultliteracy - % adultos nivel educativo
+Referencia: _Literacy rate, adult total (% of people ages 15 and above, UNESCO)_
+
+```{r}
+dim(adultliteracy)
+```
+
+
+```{r}
+names(adultliteracy)
+```
+
+
+```{r}
+head(adultliteracy)
+```
+
+### badteeth - Dientes estropeados por niño 
+Referencia: _Bad teeth per child (12 yr, WHO)_
+
+
+```{r}
+dim(badteeth)
+```
+
+
+```{r}
+names(badteeth)
+```
+
+
+```{r}
+head(badteeth)
+```
+### gdp - PIB per capita
+Referencia: _GDP/capita (US$, inflation-adjusted, World Bank)_
+
+
+
+```{r}
+dim(gdp)
+```
+
+
+```{r}
+names(gdp)
+```
+
+
+```{r}
+head(gdp)
+```
+### healthexpend - gastos en salud por persona
+Referencia: _Government health spending per person (US$, WHO)_
+
+
+
+```{r}
+dim(healthexpend)
+```
+
+
+```{r}
+names(healthexpend)
+```
+
+
+```{r}
+head(healthexpend)
+```
+### sugar_comsumption - consumo de azúcar por día y persona
+Referencia: _Sugar comsumption per person (g per day, FAO)_
+
+
+
+
+```{r}
+dim(sugar_comsumption)
+```
+
+
+```{r}
+names(sugar_comsumption)
+```
+
+
+```{r}
+head(sugar_comsumption)
+```
+
+## Variables y observaciones
+
+
+
+
+```{r}
+colnames(adultliteracy)[1]
+```
+
+
+```{r}
+colnames(adultliteracy)[1] <- "Country"
+```
+
+
+```{r}
+colnames(adultliteracy)[1]
+```
+
+
+```{r}
+colnames(badteeth)[1]
+```
+
+
+```{r}
+colnames(badteeth)[1] <- "Country"
+```
+
+
+```{r}
+colnames(gdp)[1]
+```
+
+
+```{r}
+colnames(gdp)[1] <- "Country"
+```
+
+
+```{r}
+colnames(healthexpend)[1]
+```
+
+
+```{r}
+colnames(healthexpend)[1] <- "Country"
+```
+
+
+```{r}
+colnames(healthexpend)[1]
+```
+
+
+```{r}
+colnames(sugar_comsumption)[1]
+```
+
+
+```{r}
+colnames(sugar_comsumption)[1] <- "Country"
+```
+
+
+```{r}
+colnames(sugar_comsumption)[1]
+```
+
+
+```{r}
+names(adultliteracy)
+```
+
+
+```{r}
+names(badteeth)
+```
+
+
+```{r}
+names(gdp)
+```
+
+
+```{r}
+names(healthexpend)
+```
+
+
+```{r}
+names(sugar_comsumption)
+```
+
+
+```{r}
+colnames(adultliteracy) <- gsub("X","", colnames(adultliteracy))
+```
+
+
+```{r}
+colnames(badteeth) <- gsub("X","", colnames(badteeth))
+```
+
+
+```{r}
+colnames(gdp) <- gsub("X","", colnames(gdp))
+```
+
+
+```{r}
+colnames(healthexpend) <- gsub("X","", colnames(healthexpend))
+```
+
+
+```{r}
+colnames(sugar_comsumption) <- gsub("X","", colnames(sugar_comsumption))
+```
+
+
+El número de campos es variable, los años de las observaciones no coinciden para los 
+distintos datasets:
+
+ * adultliteracy: 1975 - 2011
+ * badteeth: 2004 y dos NAs
+ * gdp: 1960 - 2011
+ * healthexpend: 1995 - 2010
+ * sugar_comsumption: 1961 - 2004 y uno adicional NA  
+
+## Valores nulos
+
+En la carga de datos, se indicó que los valores de text "NA" se consideraran como la no existencia del dato (en read.csv: na.strings="NA")
+
+```{r}
+sapply(adultliteracy, function(x)(sum(is.na(x))))
+```
+
+
+```{r}
+sapply(adultliteracy, function(x)(sprintf("%.2f%%",
+  sum(is.na(x))*100/nrow(adultliteracy))))
+```
+
+
+```{r}
+apply(adultliteracy, 1, function(x)(all(is.na(x))))
+```
+
+
+```{r}
+adultliteracy[261,]
+```
+
+
+```{r}
+adultliteracy[262,]
+```
+
+
+```{r}
+apply(adultliteracy, 2, function(x)(all(is.na(x))))
+```
+
+Hay un porcentaje muy elevado de datos vacios, incluso tenemos dos observaciones con todos los campos nulos. 
+Así, en primer lugar eliminamos esas dos filas completamente nulas:
+
+
+
+```{r}
+adultliteracy<-adultliteracy[-c(261, 262),]
+```
+
+
+
+```{r}
+sapply(badteeth, function(x)(sum(is.na(x))))
+```
+
+
+```{r}
+nrow(badteeth)
+```
+
+
+```{r}
+apply(badteeth, 2, function(x)(all(is.na(x))))
+```
+
+```{r}
+which(is.na(badteeth[,1]))
+```
+
+
+```{r}
+which(is.na(badteeth[,2]))
+```
+
+
+
+
+Eliminamos la fila y las 3 columnas con todos los datos vacios:
+
+```{r}
+badteeth<-badteeth[-c(191),]
+```
+
+```{r}
+badteeth<-badteeth[,-c(3,4,5)]
+```
+
+
+```{r}
+head(badteeth)
+```
+
+
+```{r}
+sapply(gdp, function(x)(sum(is.na(x))))
+```
+
+
+```{r}
+sapply(gdp, function(x)(sprintf("%.2f%%",sum(is.na(x))*100/nrow(gdp))))
+```
+Es un número muy considerable de campos vacios.
+
+
+
+```{r}
+sapply(healthexpend, function(x)(sum(is.na(x))))
+```
+
+
+```{r}
+sapply(healthexpend, function(x)(sprintf("%.2f%%",
+  sum(is.na(x))*100/nrow(healthexpend))))
+```
+Igualmente un número considerable de valores vacíos.
+
+
+
+```{r}
+sapply(sugar_comsumption, function(x)(sum(is.na(x))))
+```
+
+
+```{r}
+sapply(sugar_comsumption, function(x)(sprintf("%.2f%%",
+  sum(is.na(x))*100/nrow(sugar_comsumption))))
+```
+
+
+```{r}
+apply(sugar_comsumption, 1, function(x)(all(is.na(x))))
+```
+
+Existe un porcentaje elevado de datos que faltan, incluso una columna completamente vacia y varias filas.
+En primer lugar se borran las entradas completamente nulas:
+
+
+```{r}
+sugar_comsumption <- sugar_comsumption[,-c(ncol(sugar_comsumption))]
+```
+
+
+```{r}
+sugar_comsumption <- sugar_comsumption[-c(260:278),]
+```
+
+## Datos de Paises
+
+Los espacios en blanco que pudieran existir al inicio y final de los nombres ya se han eliminado con la carga de los datos (strip.white=TRUE)
+
+En _badteeh_ no están repetidos:
+
+```{r}
+nrow(badteeth)
+```
+
+
+```{r}
+nrow(unique(badteeth))
+```
+```{r}
+length(intersect(sugar_comsumption[,1],intersect(healthexpend[,1],
+  intersect(gdp[,1], intersect(badteeth[,1], adultliteracy[,1])))))
+```
+
+Revisamos las diferencias entre conjuntos de datos:
+
+
+```{r}
+length(setdiff(gdp[,1],badteeth[,1]))
+```
+
+
+```{r}
+length(setdiff(badteeth[,1],gdp[,1]))
+```
+
+```{r}
+setdiff(badteeth[,1],gdp[,1])
+```
+
+
+```{r}
+setdiff(gdp[,1], badteeth[,1])
+```
+
+Algunas diferencias se observa que corresponden al mismo país pero escrito de diferentes forma, se unifican.
+En los casos poco claros de nombres, nos apoyamos en la lista de países de la wikipedia:
+https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population
+
+
+
+```{r}
+badteeth[grep("Central",badteeth$Country),1]
+```
+
+
+```{r}
+gdp[grep("Central",gdp$Country),1]
+```
+
+
+```{r}
+badteeth$Country <- gsub("Central.+","Central African Republic", 
+  badteeth$Country)
+```
+
+
+```{r}
+badteeth[grep("Central",badteeth$Country),1]
+```
+
+```{r}
+adultliteracy[grep("Central",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Central",healthexpend$Country),1]
+```
+
+```{r}
+sugar_comsumption[grep("Central",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+adultliteracy$Country <- gsub("Central.+","Central African Republic", adultliteracy$Country)
+```
+
+
+```{r}
+sugar_comsumption$Country <- gsub("Central.+","Central African Republic", sugar_comsumption$Country)
+```
+
+
+
+```{r}
+badteeth$Country <- gsub("Cote.+","Cote d'Ivoire", badteeth$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Cote",adultliteracy$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Cote",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Cote",healthexpend$Country),1]
+```
+
+
+
+```{r}
+badteeth$Country <- gsub("Dominican.+","Dominican Republic", 
+  badteeth$Country)
+```
+
+```{r}
+adultliteracy[grep("Dominican",adultliteracy$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Dominican",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Dominican",healthexpend$Country),1]
+```
+
+
+```{r}
+adultliteracy$Country <- gsub("Dominican.+","Dominican Republic", adultliteracy$Country)
+```
+
+
+```{r}
+sugar_comsumption$Country <- gsub("Dominican.+","Dominican Republic", sugar_comsumption$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Lao",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Lao",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Lao",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Lao",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Lao",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub("Lao","Laos", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("Lao","Laos", gdp$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Lucia",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Lucia",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Lucia",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Lucia",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Lucia",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub(".+Lucia","Saint Lucia", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub(".+Lucia","Saint Lucia", gdp$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Slova",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Slova",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Slova",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Slova",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Slova",badteeth$Country),1]
+```
+
+
+```{r}
+badteeth$Country <- gsub("Slova.+","Slovak Republic", badteeth$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Cook",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Cook",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Cook",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Cook",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Cook",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub("Cook.+","Cook Islands", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("Cook.+","Cook Islands", gdp$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Czech",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Czech",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Czech",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Czech",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Czech",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub("Czech R.+","Czech Rep.", healthexpend$Country)
+```
+
+
+
+
+```{r}
+gdp$Country <- gsub("Czech R.+","Czech Rep.", gdp$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Kyrgy",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Kyrgy",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Kyrgy",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Kyrgy",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Kyrgy",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub("Kyrgy.+","Kyrgyzstan", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("Kyrgy.+","Kyrgyzstan", gdp$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Vincent",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Vincent",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Vincent",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Vincent",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Vincent",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub(".+Vincent.+","Saint Vincent and the Grenadines", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub(".+Vincent.+","Saint Vincent and the Grenadines", gdp$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Yemen",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Yemen",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Yemen",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Yemen",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Yemen",badteeth$Country),1]
+```
+
+
+```{r}
+adultliteracy[grep("Korea",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Korea",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Korea",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Korea",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Korea",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub("North Korea","Korea, Dem. Rep.", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("North Korea","Korea, Dem. Rep.", gdp$Country)
+```
+
+
+```{r}
+healthexpend$Country <- gsub("South Korea","Korea, Rep.", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("South Korea","Korea, Rep.", gdp$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("United Korea.+","Korea, United", gdp$Country)
+```
+
+
+```{r}
+healthexpend$Country <- gsub("United Korea.+","Korea, United", healthexpend$Country)
+```
+
+
+```{r}
+healthexpend$Country <- gsub("North Yemen.+","Yemen Arab Republic (Former)", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("North Yemen.+","Yemen Arab Republic (Former)", gdp$Country)
+```
+
+
+```{r}
+healthexpend$Country <- gsub("South Yemen.+","Yemen Democratic (Former)", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("South Yemen.+","Yemen Democratic (Former)", gdp$Country)
+```
+
+
+```{r}
+healthexpend$Country <- gsub("Yemen","Yemen, Rep.", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub("Yemen","Yemen, Rep.", gdp$Country)
+```
+
+
+```{r}
+adultliteracy[grep("Kitts",adultliteracy$Country),1]
+```
+
+
+```{r}
+healthexpend[grep("Kitts",healthexpend$Country),1]
+```
+
+
+```{r}
+sugar_comsumption[grep("Kitts",sugar_comsumption$Country),1]
+```
+
+
+```{r}
+gdp[grep("Kitts",gdp$Country),1]
+```
+
+
+```{r}
+badteeth[grep("Kitts",badteeth$Country),1]
+```
+
+
+```{r}
+healthexpend$Country <- gsub(".+Kitts.+","Saint Kitts and Nevis", healthexpend$Country)
+```
+
+
+```{r}
+gdp$Country <- gsub(".+Kitts.+","Saint Kitts and Nevis", gdp$Country)
+```
+
+
+```{r}
+nrow(badteeth)
+```
+
+
+```{r}
+length(intersect(sugar_comsumption[,1],intersect(healthexpend[,1],intersect(gdp[,1], intersect(badteeth[,
+  1], adultliteracy[,1])))))
+```
+## Tipos de datos
+
+
+```{r}
+str(adultliteracy)
+```
+
+
+```{r}
+str(badteeth)
+```
+
+
+```{r}
+str(gdp)
+```
+
+
+```{r}
+str(healthexpend)
+```
+
+
+```{r}
+str(sugar_comsumption)
+```
+
+Modificamos el tipo para _Country_:
+
+```{r}
+adultliteracy$Country <- as.factor(adultliteracy$Country)
+```
+
+```{r}
+str(adultliteracy$Country)
+```
+
+
+```{r}
+badteeth$Country <- as.factor(badteeth$Country)
+```
+
+
+```{r}
+gdp$Country <- as.factor(gdp$Country)
+```
+
+
+```{r}
+healthexpend$Country <- as.factor(healthexpend$Country)
+```
+
+
+```{r}
+sugar_comsumption$Country <- as.factor(sugar_comsumption$Country)
+```
+
+## Reducción de la dimensionalidad
+
+Dado que el interés del estudio es la salud dental, podríamos reducir los datos a los que sean relacionables con
+_badteeth_ (países presentes en _badteeth_ y datos anteriores o iguales a 2004), pero por ahora los conservamos para 
+apoyar también la relación entre riqueza y nivel educativo o consumo de azúcar. Ya lo realizaremos en la integración de los datos.
+
+
+
+## Normalización de datos
+
+Transformaciones para que los datos sean comparables o faciliten su comprensión. 
+Por ejemplo el valor de _badteeth_ corresponde al número de dientes estropeados en niños de 12 años, y podría interesar
+utilizar un porcentaje en su lugar, para ello intersaría saber el total de dientes, a esa edad parecería que son 28, pero no lo aplicamos al no tener certeza.
+
+
+## Integración de los datos
+
+Conversión de cada matriz de datos en un conjunto de [pais, año, valor] para poder integrar.
+ 
+
+
+```{r}
+badteethExt <- data.frame(Country=character(), Year=character(), BadTeeths=integer(), stringsAsFactors=FALSE)
+```
+
+
+```{r}
+for (j in 2:ncol(badteeth))
+{
+year<- colnames(badteeth)[j]
+for (i in 1:nrow(badteeth))
+{
+badteethExt[(j-2)*nrow(badteeth)+i,1] <- as.character(badteeth$Country[i])
+badteethExt[(j-2)*nrow(badteeth)+i,2] <- year
+badteethExt[(j-2)*nrow(badteeth)+i,3] <- badteeth[i,j]
+}
+}
+```
+
+
+```{r}
+nrow(badteethExt)
+```
+
+
+```{r}
+head(badteethExt)
+```
+
+
+```{r}
+adultliteracyExt <- data.frame(Country=character(), Year=character(), LiteracyRate=integer(), stringsAsFactors=FALSE)
+```
+
+
+```{r}
+for (j in 2:ncol(adultliteracy))
+{
+year<- colnames(adultliteracy)[j]
+for (i in 1:nrow(adultliteracy))
+{
+adultliteracyExt[(j-2)*nrow(adultliteracy)+i,1] <- as.character(adultliteracy$Country[i])
+adultliteracyExt[(j-2)*nrow(adultliteracy)+i,2] <- year
+adultliteracyExt[(j-2)*nrow(adultliteracy)+i,3] <- adultliteracy[i,j]
+}
+}
+```
+
+
+```{r}
+nrow(adultliteracyExt) == nrow(adultliteracy)*(ncol(adultliteracy)-1)
+```
+
+
+```{r}
+adultliteracyExt[1:3,]
+```
+
+
+```{r}
+healthexpendExt <- data.frame(Country=character(), Year=character(), HealthExpend=integer(), stringsAsFactors=FALSE)
+```
+
+
+```{r}
+for (j in 2:ncol(healthexpend))
+{
+year<- colnames(healthexpend)[j]
+for (i in 1:nrow(healthexpend))
+{
+healthexpendExt[(j-2)*nrow(healthexpend)+i,1] <- as.character(healthexpend$Country[i])
+healthexpendExt[(j-2)*nrow(healthexpend)+i,2] <- year
+healthexpendExt[(j-2)*nrow(healthexpend)+i,3] <- healthexpend[i,j]
+}
+}
+```
+
+
+```{r}
+nrow(healthexpendExt) == nrow(healthexpend)*(ncol(healthexpend)-1)
+```
+
+
+```{r}
+healthexpendExt[1:3,]
+```
+
+
+```{r}
+gdpExt <- data.frame(Country=character(), Year=character(), GDP=integer(), stringsAsFactors=FALSE)
+```
+
+
+```{r}
+for (j in 2:ncol(gdp))
+{
+year<- colnames(gdp)[j]
+for (i in 1:nrow(gdp))
+{
+gdpExt[(j-2)*nrow(gdp)+i,1] <- as.character(gdp$Country[i])
+gdpExt[(j-2)*nrow(gdp)+i,2] <- year
+gdpExt[(j-2)*nrow(gdp)+i,3] <- gdp[i,j]
+}
+}
+```
+
+
+```{r}
+nrow(gdpExt) == nrow(gdp)*(ncol(gdp)-1)
+```
+
+
+```{r}
+gdpExt[1:3,]
+```
+
+
+```{r}
+sugar_comsumptionExt <- data.frame(Country=character(), Year=character(), SugarComsumption=integer(), 
+  stringsAsFactors=FALSE)
+```
+
+
+```{r}
+for (j in 2:ncol(sugar_comsumption))
+{
+year<- colnames(sugar_comsumption)[j]
+for (i in 1:nrow(sugar_comsumption))
+{
+sugar_comsumptionExt[(j-2)*nrow(sugar_comsumption)+i,1] <- as.character(sugar_comsumption$Country[i])
+sugar_comsumptionExt[(j-2)*nrow(sugar_comsumption)+i,2] <- year
+sugar_comsumptionExt[(j-2)*nrow(sugar_comsumption)+i,3] <- sugar_comsumption[i,j]
+}
+}
+```
+
+
+```{r}
+nrow(sugar_comsumptionExt) == nrow(sugar_comsumption)*(ncol(sugar_comsumption)-1)
+```
+
+
+```{r}
+sugar_comsumptionExt[1:3,]
+```
+
+Integración de los datos en un único dataset:
+
+
+```{r}
+bt <- merge(badteethExt, gdpExt, by=c("Country", "Year"))
+```
+
+
+```{r}
+bt <- merge(bt, healthexpendExt, by=c("Country", "Year"))
+```
+
+
+```{r}
+bt <- merge(bt, sugar_comsumptionExt, by=c("Country", "Year"))
+```
+
+
+```{r}
+bt <- merge(bt, adultliteracyExt, by=c("Country", "Year"))
+```
+
+
+Revisamos los datos integrados:
+
+```{r}
+nrow(bt)
+```
+
+
+```{r}
+bt[1:4,]
+```
+
+Al realizar el _merge_ hemos reducido la dimensionalidad que se citaba anteriormente con los países sin datos de _badteeth_ y con los años distintos de 2.004
+
+
+
+```{r}
+str(bt)
+```
+
+
+```{r}
+bt$Country <- as.factor(bt$Country)
+```
+
+```{r}
+str(bt)
+```
+# 3. Análisis
+
+```{r}
+sapply(bt, function(x)(sum(is.na(x))))
+```
+
+
+```{r}
+sapply(bt, function(x)(sprintf("%.2f%%",sum(is.na(x))*100/nrow(bt))))
+```
+
+Falta el 86% de los datos respecto al nivel educativo (_LiteracyRate_), poco relevante para el estudio.
+
+
+
+Los que no tienen datos, se borran:
+
+```{r}
+bta <- subset(bt, !is.na(GDP)| !is.na(HealthExpend)| !is.na(SugarComsumption) | !is.na(LiteracyRate))
+```
+
+
+```{r}
+nrow(bta)
+```
+
+
+
+```{r}
+btb <- subset(bt, !is.na(GDP)& !is.na(HealthExpend)& !is.na(SugarComsumption))
+```
+
+
+```{r}
+nrow(btb)
+```
+
+
+
+### badteeths
+
+```{r}
+summary(btb$BadTeeths)
+```
+
+
+```{r}
+with(btb, Hist(BadTeeths, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+```{r}
+Boxplot( ~ BadTeeths, data=btb, id.method="y")
+```
+
+Boxplot o diagrama de caja representa el rango intercuartílico, entre el valor máximo y valor mínimo, formando una caja entre Q1 y Q3 con Q2 o mediana como línea cruzada. 
+Los valores atípicos o outliers se presentan en los extremos alejados de la caja: “valores inferiores a Q1 - 1,5IQR o valores superiores a Q3 + IQR1,5”.
+
+Pueden observarse valors atípicos en los valores superiores de la variable.
+
+Dispersión usando las medidas: rango intercuartílico, varianza y desviación típica:
+
+```{r}
+IQR(btb$BadTeeths)
+```
+
+
+```{r}
+var(btb$BadTeeths)
+```
+
+
+```{r}
+sd(btb$BadTeeths)
+```
+
+
+```{r}
+btb[which(btb$BadTeeths > 1.5*1.66+2.8),]
+```
+
+
+
+Como vemos en el diagrama de caja, en este caso tenemos 3 valores atípicos (superiores a 1.5*IQR+Q3). 
+Los conservamos, son outliers pero al mismo tiempo están alejados del máximo nivel posible (28 piezas dentales?)
+
+### GDP
+
+
+
+
+```{r}
+smm<-summary(btb$GDP)
+```
+
+
+```{r}
+smm
+```
+
+
+```{r}
+with(btb, Hist(GDP, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+
+```{r}
+Boxplot( ~ GDP, data=btb, id.method="y")
+```
+
+
+```{r}
+iqr<-IQR(btb$GDP)
+```
+
+
+```{r}
+iqr
+```
+
+
+```{r}
+var(btb$GDP)
+```
+
+
+```{r}
+sd(btb$GDP)
+```
+
+La varianza no es homogénea, mucha dispersión de los datos, los valores de los datos son elevados para su manejo, interesa estandarizar esta variable.
+En el diagrama de caja se ve que la distribución es asimétrica, el 50% de los casos por encima de la mediana tienen más dispersión que el 50% de los casos que son inferiores a la mediana
+
+
+
+```{r}
+btb[which(btb$GDP > 1.5*iqr+smm[5]),]
+```
+Muchos _outliers_. Revisandolos someramente parecen datos correctos, corresponden a países con el PIB (GDP) más elevado del mundo.
+
+ 
+
+```{r}
+btc<-btb
+```
+
+
+```{r}
+btc$GDP<- (btb$GDP - mean(btb$GDP)) / sd(btb$GDP)
+```
+
+
+```{r}
+summary(btc$GDP)
+```
+
+```{r}
+with(btc, Hist(GDP, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+### HealthExpend
+
+
+```{r}
+smm<-summary(btc$HealthExpend)
+```
+
+
+```{r}
+smm
+```
+
+
+```{r}
+with(btc, Hist(HealthExpend, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+
+```{r}
+Boxplot( ~ HealthExpend, data=btc, id.method="y")
+```
+
+
+```{r}
+iqr<-IQR(btc$HealthExpend)
+```
+
+
+```{r}
+iqr
+```
+
+
+```{r}
+var(btc$HealthExpend)
+```
+
+
+```{r}
+sd(btc$HealthExpend)
+```
+
+
+```{r}
+btc[which(btc$HealthExpend > 1.5*iqr+smm[5]),]
+```
+
+
+```{r}
+btc[which(btc$HealthExpend < smm[2]-1.5*iqr),]
+```
+
+Equivalente al caso GDP pero mucho más extremado. Se normaliza.
+
+
+
+```{r}
+btd<-btc
+```
+
+
+```{r}
+btd$HealthExpend<- (btc$HealthExpend - mean(btc$HealthExpend)) / sd(btc$HealthExpend)
+```
+
+
+```{r}
+summary(btd$HealthExpend)
+```
+
+
+```{r}
+with(btd, Hist(HealthExpend, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+### SugarComsumption
+
+```{r}
+smm<-summary(btd$SugarComsumption)
+```
+
+
+```{r}
+smm
+```
+
+
+
+```{r}
+with(btd, Hist(SugarComsumption, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+
+```{r}
+Boxplot( ~ SugarComsumption, data=btd, id.method="y")
+```
+
+
+```{r}
+iqr<-IQR(btd$SugarComsumption)
+```
+
+
+```{r}
+iqr
+```
+
+
+```{r}
+var(btd$SugarComsumption)
+```
+
+
+```{r}
+sd(btd$SugarComsumption)
+```
+
+
+```{r}
+btc[which(btd$SugarComsumption > 1.5*iqr+smm[5]),]
+```
+
+
+```{r}
+btc[which(btd$SugarComsumption < smm[2]-1.5*iqr),]
+```
+
+Sin outliers. Dispersión homogenea.
+
+## Plots con BadTeeths
+
+
+```{r}
+scatterplot(GDP~BadTeeths, reg.line=FALSE, smooth=FALSE, spread=FALSE, boxplots=FALSE, span=0.5, ellipse=FALSE, 
+  levels=c(.5, .9), data=btd)
+```
+
+```{r}
+scatterplot(SugarComsumption~BadTeeths, reg.line=FALSE, smooth=FALSE, spread=FALSE, boxplots=FALSE, span=0.5, 
+  ellipse=FALSE, levels=c(.5, .9), data=btd)
+```
+
+```{r}
+scatterplot(HealthExpend~BadTeeths, reg.line=FALSE, smooth=FALSE, spread=FALSE, boxplots=FALSE, span=0.5, ellipse=FALSE,
+   levels=c(.5, .9), data=btd)
+```
+
+
+## Prueba de regresión lineal múltiple
+
+
+```{r}
+rlin <- lm(BadTeeths ~ GDP + HealthExpend + SugarComsumption, data=btd)
+```
+
+
+```{r}
+summary(rlin)
+```
+
+El coeficiente de bondad del ajuste es 0.1539, bajo, cuanto más cerca de 1 mejor es el modelo.
+
+
+```{r}
+rlin2 <- lm(BadTeeths ~ HealthExpend + SugarComsumption, data=btd)
+```
+
+
+```{r}
+summary(rlin2)
+```
+
+
+```{r}
+rlin3 <- lm(BadTeeths ~ SugarComsumption, data=btd)
+```
+
+
+```{r}
+summary(rlin3)
+```
+
+
+```{r}
+rlin4 <- lm(BadTeeths ~ GDP, data=btd)
+```
+
+
+```{r}
+summary(rlin4)
+```
+
+
+## Evaluación del modelo y conclusiones
+
+Estamos obteniendo unos coeficientes de bondad de los resultados muy bajos, se debería seguir investigando y analizando el caso para intentar mejorar.
+

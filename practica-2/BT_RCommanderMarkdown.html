@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>M2.851 - Tipología y ciclo de vida de los datos </title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<!-- R Commander Markdown Template -->
+
+<h1>M2.851 - Tipología y ciclo de vida de los datos </h1>
+
+<h1>Práctica 2</h1>
+
+<h3>Ana Caudevilla</h3>
+
+<h3>2018-01-08</h3>
+
+<h1>1. Descripción del dataset</h1>
+
+<p>Este dataset busca comprender mejor el estado de salud dental de la población.
+En este caso se plantea si a los países con mayor riqueza les supone un empeoramiento de la salud dental, porque consumen más dulces, o si al contrario les representa una ventaja, por disponer de mejor asistencia sanitaria o incluso de un mejor nivel educativo. </p>
+
+<h1>2. Carga y limpieza de los datos</h1>
+
+<pre><code class="r">&gt; adultliteracy &lt;- 
++   read.table(&quot;C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/adultliteracy.csv&quot;,
++    header=TRUE, sep=&quot;,&quot;, na.strings=&quot;NA&quot;, dec=&quot;.&quot;, strip.white=TRUE)
+</code></pre>
+
+<pre><code class="r">&gt; badteeth &lt;- 
++   read.table(&quot;C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/badteeth.csv&quot;,
++    header=TRUE, sep=&quot;,&quot;, na.strings=&quot;NA&quot;, dec=&quot;.&quot;, strip.white=TRUE)
+</code></pre>
+
+<pre><code class="r">&gt; gdp &lt;- 
++   read.table(&quot;C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/gdp.csv&quot;,
++    header=TRUE, sep=&quot;,&quot;, na.strings=&quot;NA&quot;, dec=&quot;.&quot;, strip.white=TRUE)
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend &lt;- 
++   read.table(&quot;C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/healthexpend.csv&quot;,
++    header=TRUE, sep=&quot;,&quot;, na.strings=&quot;NA&quot;, dec=&quot;.&quot;, strip.white=TRUE)
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption &lt;- 
++   read.table(&quot;C:/Dropbox/Formacion/UOC-BD/UOCAsig/TipoCiclo/Bloque3/Bad_Teeth/sugar_consumption.csv&quot;,
++    header=TRUE, sep=&quot;,&quot;, na.strings=&quot;NA&quot;, dec=&quot;.&quot;, strip.white=TRUE)
+</code></pre>
+
+<h3>adultliteracy - % adultos nivel educativo</h3>
+
+<p>Referencia: <em>Literacy rate, adult total (% of people ages 15 and above, UNESCO)</em></p>
+
+<pre><code class="r">&gt; dim(adultliteracy)
+</code></pre>
+
+<pre><code>[1] 262  38
+</code></pre>
+
+<pre><code class="r">&gt; names(adultliteracy)
+</code></pre>
+
+<pre><code> [1] &quot;Adult..15...literacy.rate......Total&quot;
+ [2] &quot;X1975&quot;                               
+ [3] &quot;X1976&quot;                               
+ [4] &quot;X1977&quot;                               
+ [5] &quot;X1978&quot;                               
+ [6] &quot;X1979&quot;                               
+ [7] &quot;X1980&quot;                               
+ [8] &quot;X1981&quot;                               
+ [9] &quot;X1982&quot;                               
+[10] &quot;X1983&quot;                               
+[11] &quot;X1984&quot;                               
+[12] &quot;X1985&quot;                               
+[13] &quot;X1986&quot;                               
+[14] &quot;X1987&quot;                               
+[15] &quot;X1988&quot;                               
+[16] &quot;X1989&quot;                               
+[17] &quot;X1990&quot;                               
+[18] &quot;X1991&quot;                               
+[19] &quot;X1992&quot;                               
+[20] &quot;X1993&quot;                               
+[21] &quot;X1994&quot;                               
+[22] &quot;X1995&quot;                               
+[23] &quot;X1996&quot;                               
+[24] &quot;X1997&quot;                               
+[25] &quot;X1998&quot;                               
+[26] &quot;X1999&quot;                               
+[27] &quot;X2000&quot;                               
+[28] &quot;X2001&quot;                               
+[29] &quot;X2002&quot;                               
+[30] &quot;X2003&quot;                               
+[31] &quot;X2004&quot;                               
+[32] &quot;X2005&quot;                               
+[33] &quot;X2006&quot;                               
+[34] &quot;X2007&quot;                               
+[35] &quot;X2008&quot;                               
+[36] &quot;X2009&quot;                               
+[37] &quot;X2010&quot;                               
+[38] &quot;X2011&quot;                               
+</code></pre>
+
+<pre><code class="r">&gt; head(adultliteracy)
+</code></pre>
+
+<pre><code>  Adult..15...literacy.rate......Total X1975 X1976 X1977 X1978    X1979
+1                          Afghanistan    NA    NA    NA    NA 18.15768
+2                              Albania    NA    NA    NA    NA       NA
+3                              Algeria    NA    NA    NA    NA       NA
+4                              Andorra    NA    NA    NA    NA       NA
+5                               Angola    NA    NA    NA    NA       NA
+6                             Anguilla    NA    NA    NA    NA       NA
+  X1980 X1981 X1982 X1983   X1984 X1985 X1986    X1987 X1988 X1989 X1990
+1    NA    NA    NA    NA      NA    NA    NA       NA    NA    NA    NA
+2    NA    NA    NA    NA      NA    NA    NA       NA    NA    NA    NA
+3    NA    NA    NA    NA      NA    NA    NA 49.63088    NA    NA    NA
+4    NA    NA    NA    NA      NA    NA    NA       NA    NA    NA    NA
+5    NA    NA    NA    NA      NA    NA    NA       NA    NA    NA    NA
+6    NA    NA    NA    NA 95.4071    NA    NA       NA    NA    NA    NA
+  X1991 X1992 X1993 X1994 X1995 X1996 X1997 X1998 X1999 X2000    X2001
+1    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA       NA
+2    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA 98.71298
+3    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA       NA
+4    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA       NA
+5    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA 67.40542
+6    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA       NA
+    X2002 X2003 X2004 X2005    X2006 X2007    X2008 X2009 X2010    X2011
+1      NA    NA    NA    NA       NA    NA       NA    NA    NA 39.00000
+2      NA    NA    NA    NA       NA    NA 95.93864    NA    NA 96.84530
+3 69.8735    NA    NA    NA 72.64868    NA       NA    NA    NA       NA
+4      NA    NA    NA    NA       NA    NA       NA    NA    NA       NA
+5      NA    NA    NA    NA       NA    NA       NA    NA    NA 70.36242
+6      NA    NA    NA    NA       NA    NA       NA    NA    NA       NA
+</code></pre>
+
+<h3>badteeth - Dientes estropeados por niño</h3>
+
+<p>Referencia: <em>Bad teeth per child (12 yr, WHO)</em></p>
+
+<pre><code class="r">&gt; dim(badteeth)
+</code></pre>
+
+<pre><code>[1] 191   5
+</code></pre>
+
+<pre><code class="r">&gt; names(badteeth)
+</code></pre>
+
+<pre><code>[1] &quot;NA.&quot;   &quot;X2004&quot; &quot;NA..1&quot; &quot;NA..2&quot; &quot;NA..3&quot;
+</code></pre>
+
+<pre><code class="r">&gt; head(badteeth)
+</code></pre>
+
+<pre><code>                  NA. X2004 NA..1 NA..2 NA..3
+1         Afghanistan  2.90    NA    NA    NA
+2             Albania  3.02    NA    NA    NA
+3             Algeria  2.30    NA    NA    NA
+4              Angola  1.70    NA    NA    NA
+5            Anguilla  2.50    NA    NA    NA
+6 Antigua and Barbuda  0.70    NA    NA    NA
+</code></pre>
+
+<h3>gdp - PIB per capita</h3>
+
+<p>Referencia: <em>GDP/capita (US$, inflation-adjusted, World Bank)</em></p>
+
+<pre><code class="r">&gt; dim(gdp)
+</code></pre>
+
+<pre><code>[1] 275  53
+</code></pre>
+
+<pre><code class="r">&gt; names(gdp)
+</code></pre>
+
+<pre><code> [1] &quot;Income.per.person..fixed.2000.US..&quot;
+ [2] &quot;X1960&quot;                             
+ [3] &quot;X1961&quot;                             
+ [4] &quot;X1962&quot;                             
+ [5] &quot;X1963&quot;                             
+ [6] &quot;X1964&quot;                             
+ [7] &quot;X1965&quot;                             
+ [8] &quot;X1966&quot;                             
+ [9] &quot;X1967&quot;                             
+[10] &quot;X1968&quot;                             
+[11] &quot;X1969&quot;                             
+[12] &quot;X1970&quot;                             
+[13] &quot;X1971&quot;                             
+[14] &quot;X1972&quot;                             
+[15] &quot;X1973&quot;                             
+[16] &quot;X1974&quot;                             
+[17] &quot;X1975&quot;                             
+[18] &quot;X1976&quot;                             
+[19] &quot;X1977&quot;                             
+[20] &quot;X1978&quot;                             
+[21] &quot;X1979&quot;                             
+[22] &quot;X1980&quot;                             
+[23] &quot;X1981&quot;                             
+[24] &quot;X1982&quot;                             
+[25] &quot;X1983&quot;                             
+[26] &quot;X1984&quot;                             
+[27] &quot;X1985&quot;                             
+[28] &quot;X1986&quot;                             
+[29] &quot;X1987&quot;                             
+[30] &quot;X1988&quot;                             
+[31] &quot;X1989&quot;                             
+[32] &quot;X1990&quot;                             
+[33] &quot;X1991&quot;                             
+[34] &quot;X1992&quot;                             
+[35] &quot;X1993&quot;                             
+[36] &quot;X1994&quot;                             
+[37] &quot;X1995&quot;                             
+[38] &quot;X1996&quot;                             
+[39] &quot;X1997&quot;                             
+[40] &quot;X1998&quot;                             
+[41] &quot;X1999&quot;                             
+[42] &quot;X2000&quot;                             
+[43] &quot;X2001&quot;                             
+[44] &quot;X2002&quot;                             
+[45] &quot;X2003&quot;                             
+[46] &quot;X2004&quot;                             
+[47] &quot;X2005&quot;                             
+[48] &quot;X2006&quot;                             
+[49] &quot;X2007&quot;                             
+[50] &quot;X2008&quot;                             
+[51] &quot;X2009&quot;                             
+[52] &quot;X2010&quot;                             
+[53] &quot;X2011&quot;                             
+</code></pre>
+
+<pre><code class="r">&gt; head(gdp)
+</code></pre>
+
+<pre><code>  Income.per.person..fixed.2000.US..    X1960    X1961   X1962    X1963
+1                           Abkhazia       NA       NA      NA       NA
+2                        Afghanistan       NA       NA      NA       NA
+3              Akrotiri and Dhekelia       NA       NA      NA       NA
+4                            Albania       NA       NA      NA       NA
+5                            Algeria 1280.385 1085.415 855.948 1128.416
+6                     American Samoa       NA       NA      NA       NA
+     X1964    X1965    X1966    X1967    X1968    X1969   X1970    X1971
+1       NA       NA       NA       NA       NA       NA      NA       NA
+2       NA       NA       NA       NA       NA       NA      NA       NA
+3       NA       NA       NA       NA       NA       NA      NA       NA
+4       NA       NA       NA       NA       NA       NA      NA       NA
+5 1170.324 1215.016 1127.614 1200.558 1291.864 1359.491 1436.13 1235.664
+6       NA       NA       NA       NA       NA       NA      NA       NA
+     X1972    X1973   X1974    X1975   X1976    X1977    X1978    X1979
+1       NA       NA      NA       NA      NA       NA       NA       NA
+2       NA       NA      NA       NA      NA       NA       NA       NA
+3       NA       NA      NA       NA      NA       NA       NA       NA
+4       NA       NA      NA       NA      NA       NA       NA       NA
+5 1527.646 1538.306 1603.35 1632.296 1714.07 1747.665 1848.438 1923.291
+6       NA       NA      NA       NA      NA       NA       NA       NA
+     X1980    X1981    X1982    X1983    X1984    X1985    X1986    X1987
+1       NA       NA       NA       NA       NA       NA       NA       NA
+2       NA       NA       NA       NA       NA       NA       NA       NA
+3       NA       NA       NA       NA       NA       NA       NA       NA
+4 1060.685 1099.513 1110.512 1101.336 1065.235 1059.866 1091.561 1054.248
+5 1876.076 1869.621 1924.614 1963.365 2008.472 2020.087 1969.764 1902.061
+6       NA       NA       NA       NA       NA       NA       NA       NA
+     X1988    X1989     X1990     X1991     X1992     X1993     X1994
+1       NA       NA        NA        NA        NA        NA        NA
+2       NA       NA        NA        NA        NA        NA        NA
+3       NA       NA        NA        NA        NA        NA        NA
+4 1013.629 1092.475  977.7655  687.9919  643.2858  714.2414  784.5831
+5 1833.153 1864.713 1832.7434 1766.6608 1755.9737 1680.3799 1630.3815
+6       NA       NA        NA        NA        NA        NA        NA
+      X1995     X1996    X1997    X1998    X1999    X2000    X2001
+1        NA        NA       NA       NA       NA       NA       NA
+2        NA        NA       NA       NA       NA       NA       NA
+3        NA        NA       NA       NA       NA       NA       NA
+4  899.7829  990.6532  895.561 1013.514 1118.172 1200.137 1281.843
+5 1660.0042 1698.3338 1690.238 1750.651 1781.142 1794.405 1814.415
+6        NA        NA       NA       NA       NA       NA       NA
+     X2002    X2003    X2004    X2005    X2006    X2007    X2008    X2009
+1       NA       NA       NA       NA       NA       NA       NA       NA
+2       NA       NA       NA       NA       NA       NA       NA       NA
+3       NA       NA       NA       NA       NA       NA       NA       NA
+4 1313.723 1381.041 1454.023 1525.724 1594.495 1681.614 1804.419 1857.353
+5 1871.922 1971.513 2043.136 2115.186 2124.958 2155.485 2173.788 2192.704
+6       NA       NA       NA       NA       NA       NA       NA       NA
+     X2010    X2011
+1       NA       NA
+2       NA       NA
+3       NA       NA
+4 1915.424 1965.707
+5 2231.980 2255.225
+6       NA       NA
+</code></pre>
+
+<h3>healthexpend - gastos en salud por persona</h3>
+
+<p>Referencia: <em>Government health spending per person (US$, WHO)</em></p>
+
+<pre><code class="r">&gt; dim(healthexpend)
+</code></pre>
+
+<pre><code>[1] 265  17
+</code></pre>
+
+<pre><code class="r">&gt; names(healthexpend)
+</code></pre>
+
+<pre><code> [1] &quot;Per.capita.government.expenditure.on.health.at.average.exchange.rate..US..&quot;
+ [2] &quot;X1995&quot;                                                                     
+ [3] &quot;X1996&quot;                                                                     
+ [4] &quot;X1997&quot;                                                                     
+ [5] &quot;X1998&quot;                                                                     
+ [6] &quot;X1999&quot;                                                                     
+ [7] &quot;X2000&quot;                                                                     
+ [8] &quot;X2001&quot;                                                                     
+ [9] &quot;X2002&quot;                                                                     
+[10] &quot;X2003&quot;                                                                     
+[11] &quot;X2004&quot;                                                                     
+[12] &quot;X2005&quot;                                                                     
+[13] &quot;X2006&quot;                                                                     
+[14] &quot;X2007&quot;                                                                     
+[15] &quot;X2008&quot;                                                                     
+[16] &quot;X2009&quot;                                                                     
+[17] &quot;X2010&quot;                                                                     
+</code></pre>
+
+<pre><code class="r">&gt; head(healthexpend)
+</code></pre>
+
+<pre><code>  Per.capita.government.expenditure.on.health.at.average.exchange.rate..US..
+1                                                                   Abkhazia
+2                                                                Afghanistan
+3                                                      Akrotiri and Dhekelia
+4                                                                    Albania
+5                                                                    Algeria
+6                                                             American Samoa
+     X1995    X1996    X1997    X1998    X1999    X2000    X2001
+1       NA       NA       NA       NA       NA       NA       NA
+2       NA       NA       NA       NA       NA       NA       NA
+3       NA       NA       NA       NA       NA       NA       NA
+4 13.94059 17.06207 14.16477 18.62585 28.13971 27.16051 30.50962
+5 46.77146 47.96005 49.73840 48.67055 45.54382 45.91111 52.50942
+6       NA       NA       NA       NA       NA       NA       NA
+       X2002     X2003    X2004     X2005     X2006      X2007      X2008
+1         NA        NA       NA        NA        NA         NA         NA
+2  0.8326431  1.250118  1.61416  2.525066  2.813779   3.503426   3.744613
+3         NA        NA       NA        NA        NA         NA         NA
+4 32.5499020 40.609457 63.93560 71.356600 75.552514  88.762634 109.074284
+5 54.0783807 62.637209 63.22940 69.295636 81.679706 108.904747 147.820706
+6         NA        NA       NA        NA        NA         NA         NA
+       X2009      X2010
+1         NA         NA
+2   3.908887   4.390408
+3         NA         NA
+4 106.893745  94.023613
+5 143.160577 138.840923
+6         NA         NA
+</code></pre>
+
+<h3>sugar_comsumption - consumo de azúcar por día y persona</h3>
+
+<p>Referencia: <em>Sugar comsumption per person (g per day, FAO)</em></p>
+
+<pre><code class="r">&gt; dim(sugar_comsumption)
+</code></pre>
+
+<pre><code>[1] 278  46
+</code></pre>
+
+<pre><code class="r">&gt; names(sugar_comsumption)
+</code></pre>
+
+<pre><code> [1] &quot;NA.&quot;   &quot;X1961&quot; &quot;X1962&quot; &quot;X1963&quot; &quot;X1964&quot; &quot;X1965&quot; &quot;X1966&quot; &quot;X1967&quot;
+ [9] &quot;X1968&quot; &quot;X1969&quot; &quot;X1970&quot; &quot;X1971&quot; &quot;X1972&quot; &quot;X1973&quot; &quot;X1974&quot; &quot;X1975&quot;
+[17] &quot;X1976&quot; &quot;X1977&quot; &quot;X1978&quot; &quot;X1979&quot; &quot;X1980&quot; &quot;X1981&quot; &quot;X1982&quot; &quot;X1983&quot;
+[25] &quot;X1984&quot; &quot;X1985&quot; &quot;X1986&quot; &quot;X1987&quot; &quot;X1988&quot; &quot;X1989&quot; &quot;X1990&quot; &quot;X1991&quot;
+[33] &quot;X1992&quot; &quot;X1993&quot; &quot;X1994&quot; &quot;X1995&quot; &quot;X1996&quot; &quot;X1997&quot; &quot;X1998&quot; &quot;X1999&quot;
+[41] &quot;X2000&quot; &quot;X2001&quot; &quot;X2002&quot; &quot;X2003&quot; &quot;X2004&quot; &quot;NA..1&quot;
+</code></pre>
+
+<pre><code class="r">&gt; head(sugar_comsumption)
+</code></pre>
+
+<pre><code>                    NA. X1961 X1962 X1963 X1964 X1965 X1966 X1967 X1968
+1              Abkhazia    NA    NA    NA    NA    NA    NA    NA    NA
+2           Afghanistan    NA    NA    NA    NA    NA    NA    NA    NA
+3 Akrotiri and Dhekelia    NA    NA    NA    NA    NA    NA    NA    NA
+4               Albania 30.14 30.14 32.88 35.62 35.62 35.62 38.36 38.36
+5               Algeria 46.58 49.32 46.58 49.32 46.58 46.58 49.32 49.32
+6        American Samoa    NA    NA    NA    NA    NA    NA    NA    NA
+  X1969 X1970 X1971 X1972 X1973 X1974 X1975 X1976 X1977 X1978 X1979 X1980
+1    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+2    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+3    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+4 38.36 38.36 41.10 41.10 41.10 43.84 43.84 43.84 41.10 43.84 46.58 46.58
+5 46.58 43.84 52.06 49.32 46.58 49.32 63.01 65.75 71.23 71.23 82.19 82.19
+6    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+  X1981 X1982 X1983 X1984 X1985 X1986 X1987 X1988 X1989 X1990 X1991 X1992
+1    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+2    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+3    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+4 46.58 46.58 46.58 46.58 46.58 49.32 49.32 49.32 49.32 52.06 38.36 52.06
+5 82.19 73.97 82.19 82.19 79.45 84.93 93.15 79.45 84.93 82.19 79.45 73.97
+6    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+  X1993  X1994 X1995 X1996 X1997 X1998 X1999 X2000 X2001 X2002 X2003 X2004
+1    NA     NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+2    NA     NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+3    NA     NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+4 79.45 101.37 54.80 68.49 60.27 60.27 57.53 65.75 68.49 71.23 65.75 65.75
+5 76.71  73.97 73.97 73.97 79.45 54.80 60.27 82.19 79.45 82.19 84.93 84.93
+6    NA     NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+  NA..1
+1    NA
+2    NA
+3    NA
+4    NA
+5    NA
+6    NA
+</code></pre>
+
+<h2>Variables y observaciones</h2>
+
+<pre><code class="r">&gt; colnames(adultliteracy)[1]
+</code></pre>
+
+<pre><code>[1] &quot;Adult..15...literacy.rate......Total&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(adultliteracy)[1] &lt;- &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(adultliteracy)[1]
+</code></pre>
+
+<pre><code>[1] &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(badteeth)[1]
+</code></pre>
+
+<pre><code>[1] &quot;NA.&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(badteeth)[1] &lt;- &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(gdp)[1]
+</code></pre>
+
+<pre><code>[1] &quot;Income.per.person..fixed.2000.US..&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(gdp)[1] &lt;- &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(healthexpend)[1]
+</code></pre>
+
+<pre><code>[1] &quot;Per.capita.government.expenditure.on.health.at.average.exchange.rate..US..&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(healthexpend)[1] &lt;- &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(healthexpend)[1]
+</code></pre>
+
+<pre><code>[1] &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(sugar_comsumption)[1]
+</code></pre>
+
+<pre><code>[1] &quot;NA.&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(sugar_comsumption)[1] &lt;- &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; colnames(sugar_comsumption)[1]
+</code></pre>
+
+<pre><code>[1] &quot;Country&quot;
+</code></pre>
+
+<pre><code class="r">&gt; names(adultliteracy)
+</code></pre>
+
+<pre><code> [1] &quot;Country&quot; &quot;X1975&quot;   &quot;X1976&quot;   &quot;X1977&quot;   &quot;X1978&quot;   &quot;X1979&quot;   &quot;X1980&quot;  
+ [8] &quot;X1981&quot;   &quot;X1982&quot;   &quot;X1983&quot;   &quot;X1984&quot;   &quot;X1985&quot;   &quot;X1986&quot;   &quot;X1987&quot;  
+[15] &quot;X1988&quot;   &quot;X1989&quot;   &quot;X1990&quot;   &quot;X1991&quot;   &quot;X1992&quot;   &quot;X1993&quot;   &quot;X1994&quot;  
+[22] &quot;X1995&quot;   &quot;X1996&quot;   &quot;X1997&quot;   &quot;X1998&quot;   &quot;X1999&quot;   &quot;X2000&quot;   &quot;X2001&quot;  
+[29] &quot;X2002&quot;   &quot;X2003&quot;   &quot;X2004&quot;   &quot;X2005&quot;   &quot;X2006&quot;   &quot;X2007&quot;   &quot;X2008&quot;  
+[36] &quot;X2009&quot;   &quot;X2010&quot;   &quot;X2011&quot;  
+</code></pre>
+
+<pre><code class="r">&gt; names(badteeth)
+</code></pre>
+
+<pre><code>[1] &quot;Country&quot; &quot;X2004&quot;   &quot;NA..1&quot;   &quot;NA..2&quot;   &quot;NA..3&quot;  
+</code></pre>
+
+<pre><code class="r">&gt; names(gdp)
+</code></pre>
+
+<pre><code> [1] &quot;Country&quot; &quot;X1960&quot;   &quot;X1961&quot;   &quot;X1962&quot;   &quot;X1963&quot;   &quot;X1964&quot;   &quot;X1965&quot;  
+ [8] &quot;X1966&quot;   &quot;X1967&quot;   &quot;X1968&quot;   &quot;X1969&quot;   &quot;X1970&quot;   &quot;X1971&quot;   &quot;X1972&quot;  
+[15] &quot;X1973&quot;   &quot;X1974&quot;   &quot;X1975&quot;   &quot;X1976&quot;   &quot;X1977&quot;   &quot;X1978&quot;   &quot;X1979&quot;  
+[22] &quot;X1980&quot;   &quot;X1981&quot;   &quot;X1982&quot;   &quot;X1983&quot;   &quot;X1984&quot;   &quot;X1985&quot;   &quot;X1986&quot;  
+[29] &quot;X1987&quot;   &quot;X1988&quot;   &quot;X1989&quot;   &quot;X1990&quot;   &quot;X1991&quot;   &quot;X1992&quot;   &quot;X1993&quot;  
+[36] &quot;X1994&quot;   &quot;X1995&quot;   &quot;X1996&quot;   &quot;X1997&quot;   &quot;X1998&quot;   &quot;X1999&quot;   &quot;X2000&quot;  
+[43] &quot;X2001&quot;   &quot;X2002&quot;   &quot;X2003&quot;   &quot;X2004&quot;   &quot;X2005&quot;   &quot;X2006&quot;   &quot;X2007&quot;  
+[50] &quot;X2008&quot;   &quot;X2009&quot;   &quot;X2010&quot;   &quot;X2011&quot;  
+</code></pre>
+
+<pre><code class="r">&gt; names(healthexpend)
+</code></pre>
+
+<pre><code> [1] &quot;Country&quot; &quot;X1995&quot;   &quot;X1996&quot;   &quot;X1997&quot;   &quot;X1998&quot;   &quot;X1999&quot;   &quot;X2000&quot;  
+ [8] &quot;X2001&quot;   &quot;X2002&quot;   &quot;X2003&quot;   &quot;X2004&quot;   &quot;X2005&quot;   &quot;X2006&quot;   &quot;X2007&quot;  
+[15] &quot;X2008&quot;   &quot;X2009&quot;   &quot;X2010&quot;  
+</code></pre>
+
+<pre><code class="r">&gt; names(sugar_comsumption)
+</code></pre>
+
+<pre><code> [1] &quot;Country&quot; &quot;X1961&quot;   &quot;X1962&quot;   &quot;X1963&quot;   &quot;X1964&quot;   &quot;X1965&quot;   &quot;X1966&quot;  
+ [8] &quot;X1967&quot;   &quot;X1968&quot;   &quot;X1969&quot;   &quot;X1970&quot;   &quot;X1971&quot;   &quot;X1972&quot;   &quot;X1973&quot;  
+[15] &quot;X1974&quot;   &quot;X1975&quot;   &quot;X1976&quot;   &quot;X1977&quot;   &quot;X1978&quot;   &quot;X1979&quot;   &quot;X1980&quot;  
+[22] &quot;X1981&quot;   &quot;X1982&quot;   &quot;X1983&quot;   &quot;X1984&quot;   &quot;X1985&quot;   &quot;X1986&quot;   &quot;X1987&quot;  
+[29] &quot;X1988&quot;   &quot;X1989&quot;   &quot;X1990&quot;   &quot;X1991&quot;   &quot;X1992&quot;   &quot;X1993&quot;   &quot;X1994&quot;  
+[36] &quot;X1995&quot;   &quot;X1996&quot;   &quot;X1997&quot;   &quot;X1998&quot;   &quot;X1999&quot;   &quot;X2000&quot;   &quot;X2001&quot;  
+[43] &quot;X2002&quot;   &quot;X2003&quot;   &quot;X2004&quot;   &quot;NA..1&quot;  
+</code></pre>
+
+<pre><code class="r">&gt; colnames(adultliteracy) &lt;- gsub(&quot;X&quot;,&quot;&quot;, colnames(adultliteracy))
+</code></pre>
+
+<pre><code class="r">&gt; colnames(badteeth) &lt;- gsub(&quot;X&quot;,&quot;&quot;, colnames(badteeth))
+</code></pre>
+
+<pre><code class="r">&gt; colnames(gdp) &lt;- gsub(&quot;X&quot;,&quot;&quot;, colnames(gdp))
+</code></pre>
+
+<pre><code class="r">&gt; colnames(healthexpend) &lt;- gsub(&quot;X&quot;,&quot;&quot;, colnames(healthexpend))
+</code></pre>
+
+<pre><code class="r">&gt; colnames(sugar_comsumption) &lt;- gsub(&quot;X&quot;,&quot;&quot;, colnames(sugar_comsumption))
+</code></pre>
+
+<p>El número de campos es variable, los años de las observaciones no coinciden para los 
+distintos datasets:</p>
+
+<ul>
+<li>adultliteracy: 1975 - 2011</li>
+<li>badteeth: 2004 y dos NAs</li>
+<li>gdp: 1960 - 2011</li>
+<li>healthexpend: 1995 - 2010</li>
+<li>sugar_comsumption: 1961 - 2004 y uno adicional NA<br/></li>
+</ul>
+
+<h2>Valores nulos</h2>
+
+<p>En la carga de datos, se indicó que los valores de text &ldquo;NA&rdquo; se consideraran como la no existencia del dato (en read.csv: na.strings=&ldquo;NA&rdquo;)</p>
+
+<pre><code class="r">&gt; sapply(adultliteracy, function(x)(sum(is.na(x))))
+</code></pre>
+
+<pre><code>Country    1975    1976    1977    1978    1979    1980    1981    1982 
+      2     256     255     261     260     255     244     244     255 
+   1983    1984    1985    1986    1987    1988    1989    1990    1991 
+    260     257     256     258     259     258     252     246     240 
+   1992    1993    1994    1995    1996    1997    1998    1999    2000 
+    252     258     250     257     254     259     257     254     219 
+   2001    2002    2003    2004    2005    2006    2007    2008    2009 
+    232     243     252     232     243     237     230     235     234 
+   2010    2011 
+    227     178 
+</code></pre>
+
+<pre><code class="r">&gt; sapply(adultliteracy, function(x)(sprintf(&quot;%.2f%%&quot;,
++   sum(is.na(x))*100/nrow(adultliteracy))))
+</code></pre>
+
+<pre><code> Country     1975     1976     1977     1978     1979     1980     1981 
+ &quot;0.76%&quot; &quot;97.71%&quot; &quot;97.33%&quot; &quot;99.62%&quot; &quot;99.24%&quot; &quot;97.33%&quot; &quot;93.13%&quot; &quot;93.13%&quot; 
+    1982     1983     1984     1985     1986     1987     1988     1989 
+&quot;97.33%&quot; &quot;99.24%&quot; &quot;98.09%&quot; &quot;97.71%&quot; &quot;98.47%&quot; &quot;98.85%&quot; &quot;98.47%&quot; &quot;96.18%&quot; 
+    1990     1991     1992     1993     1994     1995     1996     1997 
+&quot;93.89%&quot; &quot;91.60%&quot; &quot;96.18%&quot; &quot;98.47%&quot; &quot;95.42%&quot; &quot;98.09%&quot; &quot;96.95%&quot; &quot;98.85%&quot; 
+    1998     1999     2000     2001     2002     2003     2004     2005 
+&quot;98.09%&quot; &quot;96.95%&quot; &quot;83.59%&quot; &quot;88.55%&quot; &quot;92.75%&quot; &quot;96.18%&quot; &quot;88.55%&quot; &quot;92.75%&quot; 
+    2006     2007     2008     2009     2010     2011 
+&quot;90.46%&quot; &quot;87.79%&quot; &quot;89.69%&quot; &quot;89.31%&quot; &quot;86.64%&quot; &quot;67.94%&quot; 
+</code></pre>
+
+<pre><code class="r">&gt; apply(adultliteracy, 1, function(x)(all(is.na(x))))
+</code></pre>
+
+<pre><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [34] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [67] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [89] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[100] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[111] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[122] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[133] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[144] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[155] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[166] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[177] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[188] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[199] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[210] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[221] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[232] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[243] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[254] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[261,]
+</code></pre>
+
+<pre><code>    Country 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986
+261    &lt;NA&gt;   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
+    1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000
+261   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
+    2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011
+261   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[262,]
+</code></pre>
+
+<pre><code>    Country 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986
+262    &lt;NA&gt;   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
+    1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000
+262   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
+    2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011
+262   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
+</code></pre>
+
+<pre><code class="r">&gt; apply(adultliteracy, 2, function(x)(all(is.na(x))))
+</code></pre>
+
+<pre><code>Country    1975    1976    1977    1978    1979    1980    1981    1982 
+  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE 
+   1983    1984    1985    1986    1987    1988    1989    1990    1991 
+  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE 
+   1992    1993    1994    1995    1996    1997    1998    1999    2000 
+  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE 
+   2001    2002    2003    2004    2005    2006    2007    2008    2009 
+  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE 
+   2010    2011 
+  FALSE   FALSE 
+</code></pre>
+
+<p>Hay un porcentaje muy elevado de datos vacios, incluso tenemos dos observaciones con todos los campos nulos. 
+Así, en primer lugar eliminamos esas dos filas completamente nulas:</p>
+
+<pre><code class="r">&gt; adultliteracy&lt;-adultliteracy[-c(261, 262),]
+</code></pre>
+
+<pre><code class="r">&gt; sapply(badteeth, function(x)(sum(is.na(x))))
+</code></pre>
+
+<pre><code>Country    2004   NA..1   NA..2   NA..3 
+      1       1     191     191     191 
+</code></pre>
+
+<pre><code class="r">&gt; nrow(badteeth)
+</code></pre>
+
+<pre><code>[1] 191
+</code></pre>
+
+<pre><code class="r">&gt; apply(badteeth, 2, function(x)(all(is.na(x))))
+</code></pre>
+
+<pre><code>Country    2004   NA..1   NA..2   NA..3 
+  FALSE   FALSE    TRUE    TRUE    TRUE 
+</code></pre>
+
+<pre><code class="r">&gt; which(is.na(badteeth[,1]))
+</code></pre>
+
+<pre><code>[1] 191
+</code></pre>
+
+<pre><code class="r">&gt; which(is.na(badteeth[,2]))
+</code></pre>
+
+<pre><code>[1] 191
+</code></pre>
+
+<p>Eliminamos la fila y las 3 columnas con todos los datos vacios:</p>
+
+<pre><code class="r">&gt; badteeth&lt;-badteeth[-c(191),]
+</code></pre>
+
+<pre><code class="r">&gt; badteeth&lt;-badteeth[,-c(3,4,5)]
+</code></pre>
+
+<pre><code class="r">&gt; head(badteeth)
+</code></pre>
+
+<pre><code>              Country 2004
+1         Afghanistan 2.90
+2             Albania 3.02
+3             Algeria 2.30
+4              Angola 1.70
+5            Anguilla 2.50
+6 Antigua and Barbuda 0.70
+</code></pre>
+
+<pre><code class="r">&gt; sapply(gdp, function(x)(sum(is.na(x))))
+</code></pre>
+
+<pre><code>Country    1960    1961    1962    1963    1964    1965    1966    1967 
+      0     179     178     178     178     178     172     170     169 
+   1968    1969    1970    1971    1972    1973    1974    1975    1976 
+    168     168     156     156     156     156     155     151     150 
+   1977    1978    1979    1980    1981    1982    1983    1984    1985 
+    145     145     144     132     128     125     125     121     118 
+   1986    1987    1988    1989    1990    1991    1992    1993    1994 
+    115     111     109     108      94      92      91      90      88 
+   1995    1996    1997    1998    1999    2000    2001    2002    2003 
+     84      84      82      81      79      75      79      80      80 
+   2004    2005    2006    2007    2008    2009    2010    2011 
+     81      81      82      82      84      86      93     100 
+</code></pre>
+
+<pre><code class="r">&gt; sapply(gdp, function(x)(sprintf(&quot;%.2f%%&quot;,sum(is.na(x))*100/nrow(gdp))))
+</code></pre>
+
+<pre><code> Country     1960     1961     1962     1963     1964     1965     1966 
+ &quot;0.00%&quot; &quot;65.09%&quot; &quot;64.73%&quot; &quot;64.73%&quot; &quot;64.73%&quot; &quot;64.73%&quot; &quot;62.55%&quot; &quot;61.82%&quot; 
+    1967     1968     1969     1970     1971     1972     1973     1974 
+&quot;61.45%&quot; &quot;61.09%&quot; &quot;61.09%&quot; &quot;56.73%&quot; &quot;56.73%&quot; &quot;56.73%&quot; &quot;56.73%&quot; &quot;56.36%&quot; 
+    1975     1976     1977     1978     1979     1980     1981     1982 
+&quot;54.91%&quot; &quot;54.55%&quot; &quot;52.73%&quot; &quot;52.73%&quot; &quot;52.36%&quot; &quot;48.00%&quot; &quot;46.55%&quot; &quot;45.45%&quot; 
+    1983     1984     1985     1986     1987     1988     1989     1990 
+&quot;45.45%&quot; &quot;44.00%&quot; &quot;42.91%&quot; &quot;41.82%&quot; &quot;40.36%&quot; &quot;39.64%&quot; &quot;39.27%&quot; &quot;34.18%&quot; 
+    1991     1992     1993     1994     1995     1996     1997     1998 
+&quot;33.45%&quot; &quot;33.09%&quot; &quot;32.73%&quot; &quot;32.00%&quot; &quot;30.55%&quot; &quot;30.55%&quot; &quot;29.82%&quot; &quot;29.45%&quot; 
+    1999     2000     2001     2002     2003     2004     2005     2006 
+&quot;28.73%&quot; &quot;27.27%&quot; &quot;28.73%&quot; &quot;29.09%&quot; &quot;29.09%&quot; &quot;29.45%&quot; &quot;29.45%&quot; &quot;29.82%&quot; 
+    2007     2008     2009     2010     2011 
+&quot;29.82%&quot; &quot;30.55%&quot; &quot;31.27%&quot; &quot;33.82%&quot; &quot;36.36%&quot; 
+</code></pre>
+
+<p>Es un número muy considerable de campos vacios.</p>
+
+<pre><code class="r">&gt; sapply(healthexpend, function(x)(sum(is.na(x))))
+</code></pre>
+
+<pre><code>Country    1995    1996    1997    1998    1999    2000    2001    2002 
+      0      76      75      75      74      74      75      74      75 
+   2003    2004    2005    2006    2007    2008    2009    2010 
+     75      75      75      75      75      75      75      78 
+</code></pre>
+
+<pre><code class="r">&gt; sapply(healthexpend, function(x)(sprintf(&quot;%.2f%%&quot;,
++   sum(is.na(x))*100/nrow(healthexpend))))
+</code></pre>
+
+<pre><code> Country     1995     1996     1997     1998     1999     2000     2001 
+ &quot;0.00%&quot; &quot;28.68%&quot; &quot;28.30%&quot; &quot;28.30%&quot; &quot;27.92%&quot; &quot;27.92%&quot; &quot;28.30%&quot; &quot;27.92%&quot; 
+    2002     2003     2004     2005     2006     2007     2008     2009 
+&quot;28.30%&quot; &quot;28.30%&quot; &quot;28.30%&quot; &quot;28.30%&quot; &quot;28.30%&quot; &quot;28.30%&quot; &quot;28.30%&quot; &quot;28.30%&quot; 
+    2010 
+&quot;29.43%&quot; 
+</code></pre>
+
+<p>Igualmente un número considerable de valores vacíos.</p>
+
+<pre><code class="r">&gt; sapply(sugar_comsumption, function(x)(sum(is.na(x))))
+</code></pre>
+
+<pre><code>Country    1961    1962    1963    1964    1965    1966    1967    1968 
+     19     123     123     123     123     123     123     123     123 
+   1969    1970    1971    1972    1973    1974    1975    1976    1977 
+    123     123     123     123     123     123     123     123     123 
+   1978    1979    1980    1981    1982    1983    1984    1985    1986 
+    123     123     123     123     123     123     123     123     123 
+   1987    1988    1989    1990    1991    1992    1993    1994    1995 
+    123     123     123     123     123     105     104     104     104 
+   1996    1997    1998    1999    2000    2001    2002    2003    2004 
+    103     103     103     103     103     103     103     103     103 
+  NA..1 
+    278 
+</code></pre>
+
+<pre><code class="r">&gt; sapply(sugar_comsumption, function(x)(sprintf(&quot;%.2f%%&quot;,
++   sum(is.na(x))*100/nrow(sugar_comsumption))))
+</code></pre>
+
+<pre><code>  Country      1961      1962      1963      1964      1965      1966 
+  &quot;6.83%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot; 
+     1967      1968      1969      1970      1971      1972      1973 
+ &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot; 
+     1974      1975      1976      1977      1978      1979      1980 
+ &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot; 
+     1981      1982      1983      1984      1985      1986      1987 
+ &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot; 
+     1988      1989      1990      1991      1992      1993      1994 
+ &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;44.24%&quot;  &quot;37.77%&quot;  &quot;37.41%&quot;  &quot;37.41%&quot; 
+     1995      1996      1997      1998      1999      2000      2001 
+ &quot;37.41%&quot;  &quot;37.05%&quot;  &quot;37.05%&quot;  &quot;37.05%&quot;  &quot;37.05%&quot;  &quot;37.05%&quot;  &quot;37.05%&quot; 
+     2002      2003      2004     NA..1 
+ &quot;37.05%&quot;  &quot;37.05%&quot;  &quot;37.05%&quot; &quot;100.00%&quot; 
+</code></pre>
+
+<pre><code class="r">&gt; apply(sugar_comsumption, 1, function(x)(all(is.na(x))))
+</code></pre>
+
+<pre><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [34] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [67] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [89] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[100] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[111] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[122] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[133] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[144] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[155] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[166] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[177] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[188] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[199] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[210] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[221] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[232] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[243] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[254] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+[265]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[276]  TRUE  TRUE  TRUE
+</code></pre>
+
+<p>Existe un porcentaje elevado de datos que faltan, incluso una columna completamente vacia y varias filas.
+En primer lugar se borran las entradas completamente nulas:</p>
+
+<pre><code class="r">&gt; sugar_comsumption &lt;- sugar_comsumption[,-c(ncol(sugar_comsumption))]
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption &lt;- sugar_comsumption[-c(260:278),]
+</code></pre>
+
+<h2>Datos de Paises</h2>
+
+<p>Los espacios en blanco que pudieran existir al inicio y final de los nombres ya se han eliminado con la carga de los datos (strip.white=TRUE)</p>
+
+<p>En <em>badteeh</em> no están repetidos:</p>
+
+<pre><code class="r">&gt; nrow(badteeth)
+</code></pre>
+
+<pre><code>[1] 190
+</code></pre>
+
+<pre><code class="r">&gt; nrow(unique(badteeth))
+</code></pre>
+
+<pre><code>[1] 190
+</code></pre>
+
+<pre><code class="r">&gt; length(intersect(sugar_comsumption[,1],intersect(healthexpend[,1],
++   intersect(gdp[,1], intersect(badteeth[,1], adultliteracy[,1])))))
+</code></pre>
+
+<pre><code>[1] 176
+</code></pre>
+
+<p>Revisamos las diferencias entre conjuntos de datos:</p>
+
+<pre><code class="r">&gt; length(setdiff(gdp[,1],badteeth[,1]))
+</code></pre>
+
+<pre><code>[1] 99
+</code></pre>
+
+<pre><code class="r">&gt; length(setdiff(badteeth[,1],gdp[,1]))
+</code></pre>
+
+<pre><code>[1] 14
+</code></pre>
+
+<pre><code class="r">&gt; setdiff(badteeth[,1],gdp[,1])
+</code></pre>
+
+<pre><code> [1] &quot;Central African Rep.&quot;             &quot;Cook Islands&quot;                    
+ [3] &quot;Cote D&#39;Ivoire&quot;                    &quot;Czech Rep.&quot;                      
+ [5] &quot;Dominican Rep.&quot;                   &quot;Korea, Dem. Rep.&quot;                
+ [7] &quot;Korea, Rep.&quot;                      &quot;Kyrgyzstan&quot;                      
+ [9] &quot;Laos&quot;                             &quot;Saint Kitts and Nevis&quot;           
+[11] &quot;Saint Lucia&quot;                      &quot;Saint Vincent and the Grenadines&quot;
+[13] &quot;Slovak republic&quot;                  &quot;Yemen, Rep.&quot;                     
+</code></pre>
+
+<pre><code class="r">&gt; setdiff(gdp[,1], badteeth[,1])
+</code></pre>
+
+<pre><code> [1] &quot;Abkhazia&quot;                       &quot;Akrotiri and Dhekelia&quot;         
+ [3] &quot;American Samoa&quot;                 &quot;Andorra&quot;                       
+ [5] &quot;Aruba&quot;                          &quot;Azerbaijan&quot;                    
+ [7] &quot;British Virgin Islands&quot;         &quot;Central African Republic&quot;      
+ [9] &quot;Chad&quot;                           &quot;Channel Islands&quot;               
+[11] &quot;Christmas Island&quot;               &quot;Cocos Island&quot;                  
+[13] &quot;Comoros&quot;                        &quot;Congo, Rep.&quot;                   
+[15] &quot;Cook Is&quot;                        &quot;Cote d&#39;Ivoire&quot;                 
+[17] &quot;Czech Republic&quot;                 &quot;Czechoslovakia&quot;                
+[19] &quot;Dominican Republic&quot;             &quot;East Germany&quot;                  
+[21] &quot;Equatorial Guinea&quot;              &quot;Eritrea&quot;                       
+[23] &quot;Eritrea and Ethiopia&quot;           &quot;Faeroe Islands&quot;                
+[25] &quot;Falkland Is (Malvinas)&quot;         &quot;French Guiana&quot;                 
+[27] &quot;Greenland&quot;                      &quot;Guadeloupe&quot;                    
+[29] &quot;Guam&quot;                           &quot;Guernsey&quot;                      
+[31] &quot;Guinea&quot;                         &quot;Holy See&quot;                      
+[33] &quot;Isle of Man&quot;                    &quot;Jersey&quot;                        
+[35] &quot;North Korea&quot;                    &quot;South Korea&quot;                   
+[37] &quot;United Korea (former)\n&quot;        &quot;Kosovo&quot;                        
+[39] &quot;Kyrgyz Republic&quot;                &quot;Lao&quot;                           
+[41] &quot;Marshall Islands&quot;               &quot;Mayotte&quot;                       
+[43] &quot;Monaco&quot;                         &quot;Montenegro&quot;                    
+[45] &quot;Montserrat&quot;                     &quot;Nauru&quot;                         
+[47] &quot;Netherlands Antilles&quot;           &quot;Ngorno-Karabakh&quot;               
+[49] &quot;Norfolk Island&quot;                 &quot;Northern Cyprus&quot;               
+[51] &quot;Northern Mariana Islands&quot;       &quot;Palau&quot;                         
+[53] &quot;Pitcairn&quot;                       &quot;Qatar&quot;                         
+[55] &quot;St. BarthÃ©lemy&quot;                &quot;St. Helena&quot;                    
+[57] &quot;St. Kitts and Nevis&quot;            &quot;St. Lucia&quot;                     
+[59] &quot;St. Martin&quot;                     &quot;St. Vincent and the Grenadines&quot;
+[61] &quot;St.-Pierre-et-Miquelon&quot;         &quot;Sao Tome and Principe&quot;         
+[63] &quot;Serbia&quot;                         &quot;Serbia excluding Kosovo&quot;       
+[65] &quot;Slovak Republic&quot;                &quot;Somaliland&quot;                    
+[67] &quot;South Ossetia&quot;                  &quot;Svalbard&quot;                      
+[69] &quot;Taiwan&quot;                         &quot;Timor-Leste&quot;                   
+[71] &quot;Transnistria&quot;                   &quot;Turks and Caicos Islands&quot;      
+[73] &quot;USSR&quot;                           &quot;Wallis et Futuna&quot;              
+[75] &quot;West Bank and Gaza&quot;             &quot;West Germany&quot;                  
+[77] &quot;Western Sahara&quot;                 &quot;Virgin Islands (U.S.)&quot;         
+[79] &quot;North Yemen (former)&quot;           &quot;South Yemen (former)&quot;          
+[81] &quot;Yemen&quot;                          &quot;Yugoslavia&quot;                    
+[83] &quot;Ã&lt;U+0085&gt;land&quot;                         &quot;South Sudan&quot;                   
+[85] &quot;Christian&quot;                      &quot;Coastline&quot;                     
+[87] &quot;CuraÃ§ao&quot;                       &quot;Sint Maarten (Dutch part)&quot;     
+[89] &quot;St. Martin (French part)&quot;       &quot;Antarctica&quot;                    
+[91] &quot;Virgin Islands, British&quot;        &quot;Hawaiian Trade Zone&quot;           
+[93] &quot;U.S. Pacific Islands&quot;           &quot;Wake Island&quot;                   
+[95] &quot;Bonaire&quot;                        &quot;Sark&quot;                          
+[97] &quot;Chinese Taipei&quot;                 &quot;Saint Eustatius&quot;               
+[99] &quot;Saba&quot;                          
+</code></pre>
+
+<p>Algunas diferencias se observa que corresponden al mismo país pero escrito de diferentes forma, se unifican.
+En los casos poco claros de nombres, nos apoyamos en la lista de países de la wikipedia:
+<a href="https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population">https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population</a></p>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Central&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] Central African Rep.
+190 Levels: Afghanistan Albania Algeria Angola ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Central&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] Central African Republic
+275 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; badteeth$Country &lt;- gsub(&quot;Central.+&quot;,&quot;Central African Republic&quot;, 
++   badteeth$Country)
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Central&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Central African Republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Central&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] Central African Rep.
+260 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Central&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] Central African Republic
+265 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Central&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] Central African Rep.
+259 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy$Country &lt;- gsub(&quot;Central.+&quot;,&quot;Central African Republic&quot;, adultliteracy$Country)
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption$Country &lt;- gsub(&quot;Central.+&quot;,&quot;Central African Republic&quot;, sugar_comsumption$Country)
+</code></pre>
+
+<pre><code class="r">&gt; badteeth$Country &lt;- gsub(&quot;Cote.+&quot;,&quot;Cote d&#39;Ivoire&quot;, badteeth$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Cote&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Cote d&#39;Ivoire&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Cote&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Cote d&#39;Ivoire&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Cote&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] Cote d&#39;Ivoire
+265 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; badteeth$Country &lt;- gsub(&quot;Dominican.+&quot;,&quot;Dominican Republic&quot;, 
++   badteeth$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Dominican&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Dominican Rep.&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Dominican&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Dominican Rep.&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Dominican&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] Dominican Republic
+265 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy$Country &lt;- gsub(&quot;Dominican.+&quot;,&quot;Dominican Republic&quot;, adultliteracy$Country)
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption$Country &lt;- gsub(&quot;Dominican.+&quot;,&quot;Dominican Republic&quot;, sugar_comsumption$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Lao&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Laos&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Lao&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] Lao
+265 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Lao&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Laos&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Lao&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] Lao
+275 Levels: Ã&lt;U+0085&gt;land Abkhazia Afghanistan Akrotiri and Dhekelia ... Zimbabwe
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Lao&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Laos&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;Lao&quot;,&quot;Laos&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;Lao&quot;,&quot;Laos&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Lucia&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Lucia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Lucia&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;St. Lucia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Lucia&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Lucia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Lucia&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;St. Lucia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Lucia&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Lucia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;.+Lucia&quot;,&quot;Saint Lucia&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;.+Lucia&quot;,&quot;Saint Lucia&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Slova&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Slovak Republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Slova&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Slovak Republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Slova&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Slovak Republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Slova&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Slovak Republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Slova&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Slovak republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth$Country &lt;- gsub(&quot;Slova.+&quot;,&quot;Slovak Republic&quot;, badteeth$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Cook&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Cook Islands&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Cook&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Cook Is&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Cook&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Cook Islands&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Cook&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Cook Is&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Cook&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Cook Islands&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;Cook.+&quot;,&quot;Cook Islands&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;Cook.+&quot;,&quot;Cook Islands&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Czech&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Czech Rep.&quot;     &quot;Czechoslovakia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Czech&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Czech Republic&quot; &quot;Czechoslovakia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Czech&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Czech Rep.&quot;     &quot;Czechoslovakia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Czech&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Czech Republic&quot; &quot;Czechoslovakia&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Czech&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Czech Rep.&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;Czech R.+&quot;,&quot;Czech Rep.&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;Czech R.+&quot;,&quot;Czech Rep.&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Kyrgy&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Kyrgyzstan&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Kyrgy&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Kyrgyz Republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Kyrgy&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Kyrgyzstan&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Kyrgy&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Kyrgyz Republic&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Kyrgy&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Kyrgyzstan&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;Kyrgy.+&quot;,&quot;Kyrgyzstan&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;Kyrgy.+&quot;,&quot;Kyrgyzstan&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Vincent&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Vincent and the Grenadines&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Vincent&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;St. Vincent and the Grenadines&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Vincent&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Vincent and the Grenadines&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Vincent&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;St. Vincent and the Grenadines&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Vincent&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Vincent and the Grenadines&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;.+Vincent.+&quot;,&quot;Saint Vincent and the Grenadines&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;.+Vincent.+&quot;,&quot;Saint Vincent and the Grenadines&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Yemen&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Yemen, Rep.&quot;                  &quot;Yemen Arab Republic (Former)&quot;
+[3] &quot;Yemen Democratic (Former)&quot;   
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Yemen&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;North Yemen (former)&quot; &quot;South Yemen (former)&quot; &quot;Yemen&quot;               
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Yemen&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Yemen Arab Republic (Former)&quot; &quot;Yemen Democratic (Former)&quot;   
+[3] &quot;Yemen, Rep.&quot;                 
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Yemen&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;North Yemen (former)&quot; &quot;South Yemen (former)&quot; &quot;Yemen&quot;               
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Yemen&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Yemen, Rep.&quot;
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Korea&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Korea, Dem. Rep.&quot; &quot;Korea, Rep.&quot;      &quot;Korea, United&quot;   
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Korea&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;North Korea&quot;             &quot;South Korea&quot;            
+[3] &quot;United Korea (former)\n&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Korea&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Korea, Dem. Rep.&quot; &quot;Korea, Rep.&quot;      &quot;Korea, United&quot;   
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Korea&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;North Korea&quot;             &quot;South Korea&quot;            
+[3] &quot;United Korea (former)\n&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Korea&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Korea, Dem. Rep.&quot; &quot;Korea, Rep.&quot;     
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;North Korea&quot;,&quot;Korea, Dem. Rep.&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;North Korea&quot;,&quot;Korea, Dem. Rep.&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;South Korea&quot;,&quot;Korea, Rep.&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;South Korea&quot;,&quot;Korea, Rep.&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;United Korea.+&quot;,&quot;Korea, United&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;United Korea.+&quot;,&quot;Korea, United&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;North Yemen.+&quot;,&quot;Yemen Arab Republic (Former)&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;North Yemen.+&quot;,&quot;Yemen Arab Republic (Former)&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;South Yemen.+&quot;,&quot;Yemen Democratic (Former)&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;South Yemen.+&quot;,&quot;Yemen Democratic (Former)&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;Yemen&quot;,&quot;Yemen, Rep.&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;Yemen&quot;,&quot;Yemen, Rep.&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracy[grep(&quot;Kitts&quot;,adultliteracy$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Kitts and Nevis&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend[grep(&quot;Kitts&quot;,healthexpend$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;St. Kitts and Nevis&quot;
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption[grep(&quot;Kitts&quot;,sugar_comsumption$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Kitts and Nevis&quot;
+</code></pre>
+
+<pre><code class="r">&gt; gdp[grep(&quot;Kitts&quot;,gdp$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;St. Kitts and Nevis&quot;
+</code></pre>
+
+<pre><code class="r">&gt; badteeth[grep(&quot;Kitts&quot;,badteeth$Country),1]
+</code></pre>
+
+<pre><code>[1] &quot;Saint Kitts and Nevis&quot;
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- gsub(&quot;.+Kitts.+&quot;,&quot;Saint Kitts and Nevis&quot;, healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- gsub(&quot;.+Kitts.+&quot;,&quot;Saint Kitts and Nevis&quot;, gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; nrow(badteeth)
+</code></pre>
+
+<pre><code>[1] 190
+</code></pre>
+
+<pre><code class="r">&gt; length(intersect(sugar_comsumption[,1],intersect(healthexpend[,1],intersect(gdp[,1], intersect(badteeth[,
++   1], adultliteracy[,1])))))
+</code></pre>
+
+<pre><code>[1] 190
+</code></pre>
+
+<h2>Tipos de datos</h2>
+
+<pre><code class="r">&gt; str(adultliteracy)
+</code></pre>
+
+<pre><code>&#39;data.frame&#39;:   260 obs. of  38 variables:
+ $ Country: chr  &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Andorra&quot; ...
+ $ 1975   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1976   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1977   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1978   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1979   : num  18.2 NA NA NA NA ...
+ $ 1980   : num  NA NA NA NA NA ...
+ $ 1981   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1982   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1983   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1984   : num  NA NA NA NA NA ...
+ $ 1985   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1986   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1987   : num  NA NA 49.6 NA NA ...
+ $ 1988   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1989   : num  NA NA NA NA NA ...
+ $ 1990   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1991   : num  NA NA NA NA NA ...
+ $ 1992   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1993   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1994   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1995   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1996   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1997   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1998   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 1999   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 2000   : num  NA NA NA NA NA ...
+ $ 2001   : num  NA 98.7 NA NA 67.4 ...
+ $ 2002   : num  NA NA 69.9 NA NA ...
+ $ 2003   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 2004   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 2005   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 2006   : num  NA NA 72.6 NA NA ...
+ $ 2007   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 2008   : num  NA 95.9 NA NA NA ...
+ $ 2009   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ 2010   : num  NA NA NA NA NA ...
+ $ 2011   : num  39 96.8 NA NA 70.4 ...
+</code></pre>
+
+<pre><code class="r">&gt; str(badteeth)
+</code></pre>
+
+<pre><code>&#39;data.frame&#39;:   190 obs. of  2 variables:
+ $ Country: chr  &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Angola&quot; ...
+ $ 2004   : num  2.9 3.02 2.3 1.7 2.5 0.7 3.4 2.4 0.8 1 ...
+</code></pre>
+
+<pre><code class="r">&gt; str(gdp)
+</code></pre>
+
+<pre><code>&#39;data.frame&#39;:   275 obs. of  53 variables:
+ $ Country: chr  &quot;Abkhazia&quot; &quot;Afghanistan&quot; &quot;Akrotiri and Dhekelia&quot; &quot;Albania&quot; ...
+ $ 1960   : num  NA NA NA NA 1280 ...
+ $ 1961   : num  NA NA NA NA 1085 ...
+ $ 1962   : num  NA NA NA NA 856 ...
+ $ 1963   : num  NA NA NA NA 1128 ...
+ $ 1964   : num  NA NA NA NA 1170 ...
+ $ 1965   : num  NA NA NA NA 1215 ...
+ $ 1966   : num  NA NA NA NA 1128 ...
+ $ 1967   : num  NA NA NA NA 1201 ...
+ $ 1968   : num  NA NA NA NA 1292 ...
+ $ 1969   : num  NA NA NA NA 1359 ...
+ $ 1970   : num  NA NA NA NA 1436 ...
+ $ 1971   : num  NA NA NA NA 1236 ...
+ $ 1972   : num  NA NA NA NA 1528 ...
+ $ 1973   : num  NA NA NA NA 1538 ...
+ $ 1974   : num  NA NA NA NA 1603 ...
+ $ 1975   : num  NA NA NA NA 1632 ...
+ $ 1976   : num  NA NA NA NA 1714 ...
+ $ 1977   : num  NA NA NA NA 1748 ...
+ $ 1978   : num  NA NA NA NA 1848 ...
+ $ 1979   : num  NA NA NA NA 1923 ...
+ $ 1980   : num  NA NA NA 1061 1876 ...
+ $ 1981   : num  NA NA NA 1100 1870 ...
+ $ 1982   : num  NA NA NA 1111 1925 ...
+ $ 1983   : num  NA NA NA 1101 1963 ...
+ $ 1984   : num  NA NA NA 1065 2008 ...
+ $ 1985   : num  NA NA NA 1060 2020 ...
+ $ 1986   : num  NA NA NA 1092 1970 ...
+ $ 1987   : num  NA NA NA 1054 1902 ...
+ $ 1988   : num  NA NA NA 1014 1833 ...
+ $ 1989   : num  NA NA NA 1092 1865 ...
+ $ 1990   : num  NA NA NA 978 1833 ...
+ $ 1991   : num  NA NA NA 688 1767 ...
+ $ 1992   : num  NA NA NA 643 1756 ...
+ $ 1993   : num  NA NA NA 714 1680 ...
+ $ 1994   : num  NA NA NA 785 1630 ...
+ $ 1995   : num  NA NA NA 900 1660 ...
+ $ 1996   : num  NA NA NA 991 1698 ...
+ $ 1997   : num  NA NA NA 896 1690 ...
+ $ 1998   : num  NA NA NA 1014 1751 ...
+ $ 1999   : num  NA NA NA 1118 1781 ...
+ $ 2000   : num  NA NA NA 1200 1794 ...
+ $ 2001   : num  NA NA NA 1282 1814 ...
+ $ 2002   : num  NA NA NA 1314 1872 ...
+ $ 2003   : num  NA NA NA 1381 1972 ...
+ $ 2004   : num  NA NA NA 1454 2043 ...
+ $ 2005   : num  NA NA NA 1526 2115 ...
+ $ 2006   : num  NA NA NA 1594 2125 ...
+ $ 2007   : num  NA NA NA 1682 2155 ...
+ $ 2008   : num  NA NA NA 1804 2174 ...
+ $ 2009   : num  NA NA NA 1857 2193 ...
+ $ 2010   : num  NA NA NA 1915 2232 ...
+ $ 2011   : num  NA NA NA 1966 2255 ...
+</code></pre>
+
+<pre><code class="r">&gt; str(healthexpend)
+</code></pre>
+
+<pre><code>&#39;data.frame&#39;:   265 obs. of  17 variables:
+ $ Country: chr  &quot;Abkhazia&quot; &quot;Afghanistan&quot; &quot;Akrotiri and Dhekelia&quot; &quot;Albania&quot; ...
+ $ 1995   : num  NA NA NA 13.9 46.8 ...
+ $ 1996   : num  NA NA NA 17.1 48 ...
+ $ 1997   : num  NA NA NA 14.2 49.7 ...
+ $ 1998   : num  NA NA NA 18.6 48.7 ...
+ $ 1999   : num  NA NA NA 28.1 45.5 ...
+ $ 2000   : num  NA NA NA 27.2 45.9 ...
+ $ 2001   : num  NA NA NA 30.5 52.5 ...
+ $ 2002   : num  NA 0.833 NA 32.55 54.078 ...
+ $ 2003   : num  NA 1.25 NA 40.61 62.64 ...
+ $ 2004   : num  NA 1.61 NA 63.94 63.23 ...
+ $ 2005   : num  NA 2.53 NA 71.36 69.3 ...
+ $ 2006   : num  NA 2.81 NA 75.55 81.68 ...
+ $ 2007   : num  NA 3.5 NA 88.8 108.9 ...
+ $ 2008   : num  NA 3.74 NA 109.07 147.82 ...
+ $ 2009   : num  NA 3.91 NA 106.89 143.16 ...
+ $ 2010   : num  NA 4.39 NA 94.02 138.84 ...
+</code></pre>
+
+<pre><code class="r">&gt; str(sugar_comsumption)
+</code></pre>
+
+<pre><code>&#39;data.frame&#39;:   259 obs. of  45 variables:
+ $ Country: chr  &quot;Abkhazia&quot; &quot;Afghanistan&quot; &quot;Akrotiri and Dhekelia&quot; &quot;Albania&quot; ...
+ $ 1961   : num  NA NA NA 30.1 46.6 ...
+ $ 1962   : num  NA NA NA 30.1 49.3 ...
+ $ 1963   : num  NA NA NA 32.9 46.6 ...
+ $ 1964   : num  NA NA NA 35.6 49.3 ...
+ $ 1965   : num  NA NA NA 35.6 46.6 ...
+ $ 1966   : num  NA NA NA 35.6 46.6 ...
+ $ 1967   : num  NA NA NA 38.4 49.3 ...
+ $ 1968   : num  NA NA NA 38.4 49.3 ...
+ $ 1969   : num  NA NA NA 38.4 46.6 ...
+ $ 1970   : num  NA NA NA 38.4 43.8 ...
+ $ 1971   : num  NA NA NA 41.1 52.1 ...
+ $ 1972   : num  NA NA NA 41.1 49.3 ...
+ $ 1973   : num  NA NA NA 41.1 46.6 ...
+ $ 1974   : num  NA NA NA 43.8 49.3 ...
+ $ 1975   : num  NA NA NA 43.8 63 ...
+ $ 1976   : num  NA NA NA 43.8 65.8 ...
+ $ 1977   : num  NA NA NA 41.1 71.2 ...
+ $ 1978   : num  NA NA NA 43.8 71.2 ...
+ $ 1979   : num  NA NA NA 46.6 82.2 ...
+ $ 1980   : num  NA NA NA 46.6 82.2 ...
+ $ 1981   : num  NA NA NA 46.6 82.2 ...
+ $ 1982   : num  NA NA NA 46.6 74 ...
+ $ 1983   : num  NA NA NA 46.6 82.2 ...
+ $ 1984   : num  NA NA NA 46.6 82.2 ...
+ $ 1985   : num  NA NA NA 46.6 79.5 ...
+ $ 1986   : num  NA NA NA 49.3 84.9 ...
+ $ 1987   : num  NA NA NA 49.3 93.2 ...
+ $ 1988   : num  NA NA NA 49.3 79.5 ...
+ $ 1989   : num  NA NA NA 49.3 84.9 ...
+ $ 1990   : num  NA NA NA 52.1 82.2 ...
+ $ 1991   : num  NA NA NA 38.4 79.5 ...
+ $ 1992   : num  NA NA NA 52.1 74 ...
+ $ 1993   : num  NA NA NA 79.5 76.7 ...
+ $ 1994   : num  NA NA NA 101 74 ...
+ $ 1995   : num  NA NA NA 54.8 74 ...
+ $ 1996   : num  NA NA NA 68.5 74 ...
+ $ 1997   : num  NA NA NA 60.3 79.5 ...
+ $ 1998   : num  NA NA NA 60.3 54.8 ...
+ $ 1999   : num  NA NA NA 57.5 60.3 ...
+ $ 2000   : num  NA NA NA 65.8 82.2 ...
+ $ 2001   : num  NA NA NA 68.5 79.5 ...
+ $ 2002   : num  NA NA NA 71.2 82.2 ...
+ $ 2003   : num  NA NA NA 65.8 84.9 ...
+ $ 2004   : num  NA NA NA 65.8 84.9 ...
+</code></pre>
+
+<p>Modificamos el tipo para <em>Country</em>:</p>
+
+<pre><code class="r">&gt; adultliteracy$Country &lt;- as.factor(adultliteracy$Country)
+</code></pre>
+
+<pre><code class="r">&gt; str(adultliteracy$Country)
+</code></pre>
+
+<pre><code> Factor w/ 260 levels &quot;Ã&lt;U+0085&gt;land&quot;,&quot;Abkhazia&quot;,..: 3 5 6 8 9 10 11 12 13 14 ...
+</code></pre>
+
+<pre><code class="r">&gt; badteeth$Country &lt;- as.factor(badteeth$Country)
+</code></pre>
+
+<pre><code class="r">&gt; gdp$Country &lt;- as.factor(gdp$Country)
+</code></pre>
+
+<pre><code class="r">&gt; healthexpend$Country &lt;- as.factor(healthexpend$Country)
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumption$Country &lt;- as.factor(sugar_comsumption$Country)
+</code></pre>
+
+<h2>Reducción de la dimensionalidad</h2>
+
+<p>Dado que el interés del estudio es la salud dental, podríamos reducir los datos a los que sean relacionables con
+<em>badteeth</em> (países presentes en <em>badteeth</em> y datos anteriores o iguales a 2004), pero por ahora los conservamos para 
+apoyar también la relación entre riqueza y nivel educativo o consumo de azúcar. Ya lo realizaremos en la integración de los datos.</p>
+
+<h2>Normalización de datos</h2>
+
+<p>Transformaciones para que los datos sean comparables o faciliten su comprensión. 
+Por ejemplo el valor de <em>badteeth</em> corresponde al número de dientes estropeados en niños de 12 años, y podría interesar
+utilizar un porcentaje en su lugar, para ello intersaría saber el total de dientes, a esa edad parecería que son 28, pero no lo aplicamos al no tener certeza.</p>
+
+<h2>Integración de los datos</h2>
+
+<p>Conversión de cada matriz de datos en un conjunto de [pais, año, valor] para poder integrar.</p>
+
+<pre><code class="r">&gt; badteethExt &lt;- data.frame(Country=character(), Year=character(), BadTeeths=integer(), stringsAsFactors=FALSE)
+</code></pre>
+
+<pre><code class="r">&gt; for (j in 2:ncol(badteeth))
++ {
++ year&lt;- colnames(badteeth)[j]
++ for (i in 1:nrow(badteeth))
++ {
++ badteethExt[(j-2)*nrow(badteeth)+i,1] &lt;- as.character(badteeth$Country[i])
++ badteethExt[(j-2)*nrow(badteeth)+i,2] &lt;- year
++ badteethExt[(j-2)*nrow(badteeth)+i,3] &lt;- badteeth[i,j]
++ }
++ }
+</code></pre>
+
+<pre><code class="r">&gt; nrow(badteethExt)
+</code></pre>
+
+<pre><code>[1] 190
+</code></pre>
+
+<pre><code class="r">&gt; head(badteethExt)
+</code></pre>
+
+<pre><code>              Country Year BadTeeths
+1         Afghanistan 2004      2.90
+2             Albania 2004      3.02
+3             Algeria 2004      2.30
+4              Angola 2004      1.70
+5            Anguilla 2004      2.50
+6 Antigua and Barbuda 2004      0.70
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracyExt &lt;- data.frame(Country=character(), Year=character(), LiteracyRate=integer(), stringsAsFactors=FALSE)
+</code></pre>
+
+<pre><code class="r">&gt; for (j in 2:ncol(adultliteracy))
++ {
++ year&lt;- colnames(adultliteracy)[j]
++ for (i in 1:nrow(adultliteracy))
++ {
++ adultliteracyExt[(j-2)*nrow(adultliteracy)+i,1] &lt;- as.character(adultliteracy$Country[i])
++ adultliteracyExt[(j-2)*nrow(adultliteracy)+i,2] &lt;- year
++ adultliteracyExt[(j-2)*nrow(adultliteracy)+i,3] &lt;- adultliteracy[i,j]
++ }
++ }
+</code></pre>
+
+<pre><code class="r">&gt; nrow(adultliteracyExt) == nrow(adultliteracy)*(ncol(adultliteracy)-1)
+</code></pre>
+
+<pre><code>[1] TRUE
+</code></pre>
+
+<pre><code class="r">&gt; adultliteracyExt[1:3,]
+</code></pre>
+
+<pre><code>      Country Year LiteracyRate
+1 Afghanistan 1975           NA
+2     Albania 1975           NA
+3     Algeria 1975           NA
+</code></pre>
+
+<pre><code class="r">&gt; healthexpendExt &lt;- data.frame(Country=character(), Year=character(), HealthExpend=integer(), stringsAsFactors=FALSE)
+</code></pre>
+
+<pre><code class="r">&gt; for (j in 2:ncol(healthexpend))
++ {
++ year&lt;- colnames(healthexpend)[j]
++ for (i in 1:nrow(healthexpend))
++ {
++ healthexpendExt[(j-2)*nrow(healthexpend)+i,1] &lt;- as.character(healthexpend$Country[i])
++ healthexpendExt[(j-2)*nrow(healthexpend)+i,2] &lt;- year
++ healthexpendExt[(j-2)*nrow(healthexpend)+i,3] &lt;- healthexpend[i,j]
++ }
++ }
+</code></pre>
+
+<pre><code class="r">&gt; nrow(healthexpendExt) == nrow(healthexpend)*(ncol(healthexpend)-1)
+</code></pre>
+
+<pre><code>[1] TRUE
+</code></pre>
+
+<pre><code class="r">&gt; healthexpendExt[1:3,]
+</code></pre>
+
+<pre><code>                Country Year HealthExpend
+1              Abkhazia 1995           NA
+2           Afghanistan 1995           NA
+3 Akrotiri and Dhekelia 1995           NA
+</code></pre>
+
+<pre><code class="r">&gt; gdpExt &lt;- data.frame(Country=character(), Year=character(), GDP=integer(), stringsAsFactors=FALSE)
+</code></pre>
+
+<pre><code class="r">&gt; for (j in 2:ncol(gdp))
++ {
++ year&lt;- colnames(gdp)[j]
++ for (i in 1:nrow(gdp))
++ {
++ gdpExt[(j-2)*nrow(gdp)+i,1] &lt;- as.character(gdp$Country[i])
++ gdpExt[(j-2)*nrow(gdp)+i,2] &lt;- year
++ gdpExt[(j-2)*nrow(gdp)+i,3] &lt;- gdp[i,j]
++ }
++ }
+</code></pre>
+
+<pre><code class="r">&gt; nrow(gdpExt) == nrow(gdp)*(ncol(gdp)-1)
+</code></pre>
+
+<pre><code>[1] TRUE
+</code></pre>
+
+<pre><code class="r">&gt; gdpExt[1:3,]
+</code></pre>
+
+<pre><code>                Country Year GDP
+1              Abkhazia 1960  NA
+2           Afghanistan 1960  NA
+3 Akrotiri and Dhekelia 1960  NA
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumptionExt &lt;- data.frame(Country=character(), Year=character(), SugarComsumption=integer(), 
++   stringsAsFactors=FALSE)
+</code></pre>
+
+<pre><code class="r">&gt; for (j in 2:ncol(sugar_comsumption))
++ {
++ year&lt;- colnames(sugar_comsumption)[j]
++ for (i in 1:nrow(sugar_comsumption))
++ {
++ sugar_comsumptionExt[(j-2)*nrow(sugar_comsumption)+i,1] &lt;- as.character(sugar_comsumption$Country[i])
++ sugar_comsumptionExt[(j-2)*nrow(sugar_comsumption)+i,2] &lt;- year
++ sugar_comsumptionExt[(j-2)*nrow(sugar_comsumption)+i,3] &lt;- sugar_comsumption[i,j]
++ }
++ }
+</code></pre>
+
+<pre><code class="r">&gt; nrow(sugar_comsumptionExt) == nrow(sugar_comsumption)*(ncol(sugar_comsumption)-1)
+</code></pre>
+
+<pre><code>[1] TRUE
+</code></pre>
+
+<pre><code class="r">&gt; sugar_comsumptionExt[1:3,]
+</code></pre>
+
+<pre><code>                Country Year SugarComsumption
+1              Abkhazia 1961               NA
+2           Afghanistan 1961               NA
+3 Akrotiri and Dhekelia 1961               NA
+</code></pre>
+
+<p>Integración de los datos en un único dataset:</p>
+
+<pre><code class="r">&gt; bt &lt;- merge(badteethExt, gdpExt, by=c(&quot;Country&quot;, &quot;Year&quot;))
+</code></pre>
+
+<pre><code class="r">&gt; bt &lt;- merge(bt, healthexpendExt, by=c(&quot;Country&quot;, &quot;Year&quot;))
+</code></pre>
+
+<pre><code class="r">&gt; bt &lt;- merge(bt, sugar_comsumptionExt, by=c(&quot;Country&quot;, &quot;Year&quot;))
+</code></pre>
+
+<pre><code class="r">&gt; bt &lt;- merge(bt, adultliteracyExt, by=c(&quot;Country&quot;, &quot;Year&quot;))
+</code></pre>
+
+<p>Revisamos los datos integrados:</p>
+
+<pre><code class="r">&gt; nrow(bt)
+</code></pre>
+
+<pre><code>[1] 190
+</code></pre>
+
+<pre><code class="r">&gt; bt[1:4,]
+</code></pre>
+
+<pre><code>      Country Year BadTeeths       GDP HealthExpend SugarComsumption
+1 Afghanistan 2004      2.90        NA      1.61416               NA
+2     Albania 2004      3.02 1454.0229     63.93560            65.75
+3     Algeria 2004      2.30 2043.1357     63.22940            84.93
+4      Angola 2004      1.70  353.2315     19.66478            35.62
+  LiteracyRate
+1           NA
+2           NA
+3           NA
+4           NA
+</code></pre>
+
+<p>Al realizar el <em>merge</em> hemos reducido la dimensionalidad que se citaba anteriormente con los países sin datos de <em>badteeth</em> y con los años distintos de 2.004</p>
+
+<pre><code class="r">&gt; str(bt)
+</code></pre>
+
+<pre><code>&#39;data.frame&#39;:   190 obs. of  7 variables:
+ $ Country         : chr  &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Angola&quot; ...
+ $ Year            : chr  &quot;2004&quot; &quot;2004&quot; &quot;2004&quot; &quot;2004&quot; ...
+ $ BadTeeths       : num  2.9 3.02 2.3 1.7 2.5 0.7 3.4 2.4 0.8 1 ...
+ $ GDP             : num  NA 1454 2043 353 NA ...
+ $ HealthExpend    : num  1.61 63.94 63.23 19.66 NA ...
+ $ SugarComsumption: num  NA 65.8 84.9 35.6 NA ...
+ $ LiteracyRate    : num  NA NA NA NA NA NA NA NA NA NA ...
+</code></pre>
+
+<pre><code class="r">&gt; bt$Country &lt;- as.factor(bt$Country)
+</code></pre>
+
+<pre><code class="r">&gt; str(bt)
+</code></pre>
+
+<pre><code>&#39;data.frame&#39;:   190 obs. of  7 variables:
+ $ Country         : Factor w/ 190 levels &quot;Afghanistan&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ Year            : chr  &quot;2004&quot; &quot;2004&quot; &quot;2004&quot; &quot;2004&quot; ...
+ $ BadTeeths       : num  2.9 3.02 2.3 1.7 2.5 0.7 3.4 2.4 0.8 1 ...
+ $ GDP             : num  NA 1454 2043 353 NA ...
+ $ HealthExpend    : num  1.61 63.94 63.23 19.66 NA ...
+ $ SugarComsumption: num  NA 65.8 84.9 35.6 NA ...
+ $ LiteracyRate    : num  NA NA NA NA NA NA NA NA NA NA ...
+</code></pre>
+
+<h1>3. Análisis</h1>
+
+<pre><code class="r">&gt; sapply(bt, function(x)(sum(is.na(x))))
+</code></pre>
+
+<pre><code>         Country             Year        BadTeeths              GDP 
+               0                0                0               16 
+    HealthExpend SugarComsumption     LiteracyRate 
+              17               25              163 
+</code></pre>
+
+<pre><code class="r">&gt; sapply(bt, function(x)(sprintf(&quot;%.2f%%&quot;,sum(is.na(x))*100/nrow(bt))))
+</code></pre>
+
+<pre><code>         Country             Year        BadTeeths              GDP 
+         &quot;0.00%&quot;          &quot;0.00%&quot;          &quot;0.00%&quot;          &quot;8.42%&quot; 
+    HealthExpend SugarComsumption     LiteracyRate 
+         &quot;8.95%&quot;         &quot;13.16%&quot;         &quot;85.79%&quot; 
+</code></pre>
+
+<p>Falta el 86% de los datos respecto al nivel educativo (<em>LiteracyRate</em>), poco relevante para el estudio.</p>
+
+<p>Los que no tienen datos, se borran:</p>
+
+<pre><code class="r">&gt; bta &lt;- subset(bt, !is.na(GDP)| !is.na(HealthExpend)| !is.na(SugarComsumption) | !is.na(LiteracyRate))
+</code></pre>
+
+<pre><code class="r">&gt; nrow(bta)
+</code></pre>
+
+<pre><code>[1] 183
+</code></pre>
+
+<pre><code class="r">&gt; btb &lt;- subset(bt, !is.na(GDP)&amp; !is.na(HealthExpend)&amp; !is.na(SugarComsumption))
+</code></pre>
+
+<pre><code class="r">&gt; nrow(btb)
+</code></pre>
+
+<pre><code>[1] 157
+</code></pre>
+
+<h3>badteeths</h3>
+
+<pre><code class="r">&gt; summary(btb$BadTeeths)
+</code></pre>
+
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.300   1.140   1.800   2.076   2.800   6.000 
+</code></pre>
+
+<pre><code class="r">&gt; with(btb, Hist(BadTeeths, scale=&quot;frequency&quot;, breaks=&quot;Sturges&quot;, col=&quot;darkgray&quot;))
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAJACAMAAABSRCkEAAAAflBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6ADo6AGY6OmY6OpA6ZrY6kNtmAABmADpmAGZmOgBmOpBmZgBmtttmtv+QOgCQOjqQOmaQZgCQtpCQ29uQ2/+pqam2ZgC225C2/7a2///bkDrb/7bb////tmb/25D//7b//9v////6KpvhAAAACXBIWXMAAAsSAAALEgHS3X78AAAOnklEQVR4nO3dDVvbVp7GYdNuYLIU2s4ubnaSYTYs+OX7f8G1bEhbjDuSnnOIdXTf19Uy01R/LOlXvWBjL7YQWHzvB8C0CYiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIjIvw1o/cvX7fp2sfjw+B4Ph6npE1DX0Hb103s8HKamT0Cr68fDkej1ssxBGtDtxedP3RHo+ugc5vppDtKAttvNcnG5ffrh6AAkoFnIA6qyLFNRIaCeZ0eaEAe0ulrc3C8WTmEzlQa0Wd5t73f1uIieqfgubHf7/nTz9m38+EfFZJQ4AnUcgWYqvgZa33YFPbgGmim38UQERERARAREREBEBERkqgGVeK0KBUw2oH/2IKD6BEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERAROKAVlf794R/7w+cE9CZSAN6+cjLpw/v+5GXAjoTaUAvH7b73h+6K6Az4QhEJL4GWt+6Bpozd2FEKgT0Lp/WJaAzUeI2/ubeKWy2SlxE3+/qWV27iJ6lErfxTzdu42er1G28I9BMFbiN7wp6cA00U27jiQiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiI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" title="plot of chunk unnamed-chunk-222" alt="plot of chunk unnamed-chunk-222" width="750" /></p>
+
+<pre><code class="r">&gt; Boxplot( ~ BadTeeths, data=btb, id.method=&quot;y&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-223" alt="plot of chunk unnamed-chunk-223" width="750" /></p>
+
+<pre><code>[1] &quot;143&quot; &quot;144&quot; &quot;148&quot;
+</code></pre>
+
+<p>Boxplot o diagrama de caja representa el rango intercuartílico, entre el valor máximo y valor mínimo, formando una caja entre Q1 y Q3 con Q2 o mediana como línea cruzada. 
+Los valores atípicos o outliers se presentan en los extremos alejados de la caja: “valores inferiores a Q1 - 1,5IQR o valores superiores a Q3 + IQR1,5”.</p>
+
+<p>Pueden observarse valors atípicos en los valores superiores de la variable.</p>
+
+<p>Dispersión usando las medidas: rango intercuartílico, varianza y desviación típica:</p>
+
+<pre><code class="r">&gt; IQR(btb$BadTeeths)
+</code></pre>
+
+<pre><code>[1] 1.66
+</code></pre>
+
+<pre><code class="r">&gt; var(btb$BadTeeths)
+</code></pre>
+
+<pre><code>[1] 1.570963
+</code></pre>
+
+<pre><code class="r">&gt; sd(btb$BadTeeths)
+</code></pre>
+
+<pre><code>[1] 1.253381
+</code></pre>
+
+<pre><code class="r">&gt; btb[which(btb$BadTeeths &gt; 1.5*1.66+2.8),]
+</code></pre>
+
+<pre><code>                  Country Year BadTeeths      GDP HealthExpend
+143 Saint Kitts and Nevis 2004       5.5 9465.436     193.1087
+144           Saint Lucia 2004       6.0 5078.464     159.4894
+148          Saudi Arabia 2004       5.9 9261.922     285.5432
+    SugarComsumption LiteracyRate
+143           156.16           NA
+144            98.63           NA
+148            73.97     82.85774
+</code></pre>
+
+<p>Como vemos en el diagrama de caja, en este caso tenemos 3 valores atípicos (superiores a 1.5*IQR+Q3). 
+Los conservamos, son outliers pero al mismo tiempo están alejados del máximo nivel posible (28 piezas dentales?)</p>
+
+<h3>GDP</h3>
+
+<pre><code class="r">&gt; smm&lt;-summary(btb$GDP)
+</code></pre>
+
+<pre><code class="r">&gt; smm
+</code></pre>
+
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+   88.24   577.10  2164.63  6581.89  6588.90 39830.41 
+</code></pre>
+
+<pre><code class="r">&gt; with(btb, Hist(GDP, scale=&quot;frequency&quot;, breaks=&quot;Sturges&quot;, col=&quot;darkgray&quot;))
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAJACAMAAABSRCkEAAAAaVBMVEUAAAAAADoAAGYAOjoAOpAAZrY6AAA6ADo6AGY6OmY6OpA6kNtmAABmADpmAGZmOgBmtv+QOgCQOjqQtpCQ29uQ2/+pqam2ZgC2/7a2///bkDrb25Db/7bb////tmb/25D//7b//9v///8uM5KRAAAACXBIWXMAAAsSAAALEgHS3X78AAALUUlEQVR4nO3dbVsTWYKA4egq4za0A84wDuxKwP//I5cEdMeLIJU8lXRSdd8fOlyNJ6eCD5Vz8ubiOwSLv/oAOG0CIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIpAS2Ygz0GFMZyKgREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIjloQHt6zQl/ocMG9K/dCOh4CYhEQCQCIhEQiYBIBEQiIBIBkQiIJAe0PFs/2fD+ZsBYAU1PDejh6nJ9effh29tjBTQ9NaD7zze/XP52rICmxxmIJK+B7i+sgebMLoxEQCS28SQW0SR72Ma//kpmAU2PMxCJbTyJXRiJgEgERCIgkryNv3jes79cRQtoDvIZ6OHqfPBYAU1Pvwu7//N66FgBTY81EImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIgkB7Q8W6y8vxkwVkDTUwN6uLpcX959+Pb2WAFNTw3o/vPNL5e/HSug6XEGIslroPsLa6A5swsj2UNAix9efkdAkzPGNv7jrbuw2cqL6C/X328/Pnb0h0X0LI2xjb89t42fLWcgkjHWQOfWQPNlG08iIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgkhzQ8myx8v5mwFgBTU8N6OHqcn159+Hb22MFND01oPvPN79c/nasgKbHGYgkr4HuL6yB5swujGQPAS1+ePkdAU3OCNv4y4erxeLlEsgZaBbGWER/fVxHL/+wiJ6lQQHdX3x87Q88bt8fvlzbxs/WwDPQ3WLx7nrjn3g8/dydP/6Bl4kJaA6G34WtVjqXG/7I1/WCecMpSkBzMDCg5dnqDLThfmqrqxbQ9AxcA23YZO1w1QKaHg8kkgwL6O5x9XP7yip6i6sW0PQMuwv7c9XO8tM2KyABzcOggJ6ect/whPuWVy2g6Rl2F7Z+yn3DE+5bXrWApscimkRAJEN3Ya+8aGy7qxbQ9Ax8IHHTcxjbX7WApmdYQFs9hfH6VQtoeobdhX09H+WqBTQ9A+/CrIHYzC6MREAkwwJ6uFp8+N8/PZnKCwOfCztf/vHNc2G8NHQb/xjQtpt5Ac3BFmegW2cgXhi8Btr43sEtr1pA02MXRiIgEo9Ek2xxBrrd8gkxAc3BFgHZxvPSFgHduQvjhW3WQFu+qkxAc2AXRiIgkm3uwrbcyAtoDoadgW4//vhPumoBTc8WL6q3jeeloc/Gf3cGYpMtno3fsh8BzYJdGImASLyonsSL6km8qJ7Ei+pJvKiexC6MxOcDkQxbA33Zcgf/ylULaHq8K4NkQEC73YEJaB4GBfRvayBeMeQu7Osur0cU0DzYhZF4HIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZHkgJZnr71aUUBzUAN6uHr69OgNn7wgoDmoAf14teuGV70KaA6cgUjyGuj1Nx0KaA7swkj2ENDih5ffEdDkjBPQ8tOGN44JaA7yLuz1f0ZDQHMwwiL6MR1noNka4S7s/uLD/whorkZZAy3PNn3ugoDmwDaeREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQ5oOXZYuX9zYCxApqeGtDD1eX68u7Dt7fHCmh6akD3n29+ufzt2J0D2tXQnwI7O40z0K7jhv4U2FleA91fHGANJKCjdRq7MAEdrT0E9PoKREDTM8Y2/t31vhfRAjpaYyyiH67OBTRX42zjv34U0EyNtI2//a9PApqlEbbx56uL25f7eAHNgW08iYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIaEwz/HepBDSmkznQ8QhoTCdzoOMR0JhO5kDHI6AxncyBjkdAYzqZAx2PgMZ0Mgc6HgGN6WQOdDzTDujQj8sIaMtvbzn24AHtOG7nv1ABbfntLccKaOT5joCANg7c9SYfeL4jIKCNA3e9yQee7wgIaOPAXW/ygec7AgLaOHDXm3zg+Y6AgDYO3PUmH3i+IyCgjQN3vckHnm9n4z1AJqCNA3e9yQeeb2fjHaiANg7c9SYfeL6dCWiv4wQ0/EAFtHHgrnadL/yYd/u7Ge1ABXQMEwpo2FgBvTYu/Jh3+7sZ7UAFdAwTCmjYWAG9Nu7gdj1QAR3lhKdzoAI6yglP50AFdJQTns6BCugoJzydAxXQUU54OgcqoKOc8HQOVEBHOeHpHKiAjnLC0zlQAR3lhKdzoOMHtDxbP7L5/kZAczjQ0QN6uLpcX959+CagGRzo6AHdf7755fJ7eL0tpygGtNUZiOnJa6D7i3WHg9ZATM9Bd2FMj4BIBEQiIBIBkQiIREAkAiIREImASAREIiASAZHsMyDmYH8B7fvajm++6U+49XwCMmGaT0AmTPMJyIRpPgGZMM0nIBOm+QRkwjSfBwNJBEQiIBIBkQiIREAkAiIREImASAREMmJA9xeLlx9CNbLlp5ufE228GHm6s8Xi8pAT3j19ENPhJnz6ALEw33gBrY7k9uNoV7fR3erH+zzRxotx3f95/X35t+vDTbj6/Xhtpj39fG8ff0PKfOMFtPoQxfUJYn++vvvH4wTPE228GHe+u9XP7+vl4SZceW2m/Uy4/O+/X6af6HgBLf/4tv6V3avVLXqeaOPF+DO+NtPeJnz8rT/chA9f/vl4oinzjRfQ6lM4DxLQ80QbL0af8OHq/KATLs/eXR9wwtvz1T1Vmc8Z6LfuL86/T/iU93idD0dzBjrAGugpoEOuEM5Wn3F82DXQIRddt+s3fp0fxxpodbLf9y5sfYueJ9p4MfJs634OOOHz3cbhJnzaPJf5PA70G0+/oJcHfFjmccbHNdA8HwdilgREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQjobXeLxeLj0yctrD9r4emL87/6sI6DgN509/7prUTP7wi5fP5i3++hPBECesv6fS+rN28+vcvuxxdP/xsBveXnuzOfvli96Xf1xfJvzkArAnrL6j3iT1+sA3r4cv1zMYSA3rb+PIezxbvrX89APBHQW54WOz+7ufvwTUD/QUBvulu9W/3u+Qz0cxfGEwG9bbXmeX/zH48DCej/CYhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJP8HVGKJTbf1dkAAAAAASUVORK5CYII=" title="plot of chunk unnamed-chunk-230" alt="plot of chunk unnamed-chunk-230" width="750" /></p>
+
+<pre><code class="r">&gt; Boxplot( ~ GDP, data=btb, id.method=&quot;y&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-231" alt="plot of chunk unnamed-chunk-231" width="750" /></p>
+
+<pre><code> [1] &quot;128&quot; &quot;83&quot;  &quot;182&quot; &quot;165&quot; &quot;180&quot; &quot;74&quot;  &quot;46&quot;  &quot;164&quot; &quot;79&quot;  &quot;181&quot;
+</code></pre>
+
+<pre><code class="r">&gt; iqr&lt;-IQR(btb$GDP)
+</code></pre>
+
+<pre><code class="r">&gt; iqr
+</code></pre>
+
+<pre><code>[1] 6011.791
+</code></pre>
+
+<pre><code class="r">&gt; var(btb$GDP)
+</code></pre>
+
+<pre><code>[1] 92499236
+</code></pre>
+
+<pre><code class="r">&gt; sd(btb$GDP)
+</code></pre>
+
+<pre><code>[1] 9617.652
+</code></pre>
+
+<p>La varianza no es homogénea, mucha dispersión de los datos, los valores de los datos son elevados para su manejo, interesa estandarizar esta variable.
+En el diagrama de caja se ve que la distribución es asimétrica, el 50% de los casos por encima de la mediana tienen más dispersión que el 50% de los casos que son inferiores a la mediana</p>
+
+<pre><code class="r">&gt; btb[which(btb$GDP &gt; 1.5*iqr+smm[5]),]
+</code></pre>
+
+<pre><code>                 Country Year BadTeeths      GDP HealthExpend
+9              Australia 2004      0.80 23498.26    1915.1531
+10               Austria 2004      1.00 24945.05    2787.6847
+11               Bahamas 2004      1.60 21106.72     633.1497
+16               Belgium 2004      1.10 23750.46    2677.6519
+25                Brunei 2004      4.80 18609.15     557.9192
+31                Canada 2004      2.10 24936.83    2132.4034
+46               Denmark 2004      0.80 30773.71    3692.8056
+56               Finland 2004      1.20 25774.06    2225.7377
+57                France 2004      1.20 22495.24    2861.5022
+62               Germany 2004      0.70 23390.86    2706.4983
+74               Iceland 2004      1.40 34230.18    3714.6547
+79               Ireland 2004      1.10 28937.33    2668.2599
+80                Israel 2004      1.66 19366.34     880.5043
+81                 Italy 2004      1.10 19744.89    1952.3460
+83                 Japan 2004      1.70 38793.62    2352.0917
+90                Kuwait 2004      2.60 23107.47     595.9849
+121          Netherlands 2004      0.80 24746.84    2234.8590
+128               Norway 2004      1.70 39830.41    4542.5184
+164               Sweden 2004      1.00 30434.45    2977.2338
+165          Switzerland 2004      0.86 36003.23    3213.2000
+180 United Arab Emirates 2004      1.60 35316.34     588.3173
+181       United Kingdom 2004      0.70 27752.91    2392.0480
+182        United States 2004      1.19 36931.39    2785.6029
+    SugarComsumption LiteracyRate
+9             128.77           NA
+10            123.29           NA
+11            126.03           NA
+16            150.69           NA
+25            106.85           NA
+31            172.60           NA
+46            158.90           NA
+56             93.15           NA
+57            109.59           NA
+62            123.29           NA
+74            153.43           NA
+79            115.07           NA
+80            104.11           NA
+81             84.93           NA
+83             76.71           NA
+90            101.37           NA
+121           142.47           NA
+128           120.55           NA
+164           128.77           NA
+165           164.38           NA
+180           104.11           NA
+181           112.33           NA
+182           191.78           NA
+</code></pre>
+
+<p>Muchos <em>outliers</em>. Revisandolos someramente parecen datos correctos, corresponden a países con el PIB (GDP) más elevado del mundo.</p>
+
+<pre><code class="r">&gt; btc&lt;-btb
+</code></pre>
+
+<pre><code class="r">&gt; btc$GDP&lt;- (btb$GDP - mean(btb$GDP)) / sd(btb$GDP)
+</code></pre>
+
+<pre><code class="r">&gt; summary(btc$GDP)
+</code></pre>
+
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-0.675180 -0.624350 -0.459286  0.000000  0.000729  3.457031 
+</code></pre>
+
+<pre><code class="r">&gt; with(btc, Hist(GDP, scale=&quot;frequency&quot;, breaks=&quot;Sturges&quot;, col=&quot;darkgray&quot;))
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-240" alt="plot of chunk unnamed-chunk-240" width="750" /></p>
+
+<h3>HealthExpend</h3>
+
+<pre><code class="r">&gt; smm&lt;-summary(btc$HealthExpend)
+</code></pre>
+
+<pre><code class="r">&gt; smm
+</code></pre>
+
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+   1.416   16.221   96.154  469.230  290.616 4542.518 
+</code></pre>
+
+<pre><code class="r">&gt; with(btc, Hist(HealthExpend, scale=&quot;frequency&quot;, breaks=&quot;Sturges&quot;, col=&quot;darkgray&quot;))
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAJACAMAAABSRCkEAAAAh1BMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6ADo6AGY6OmY6OpA6kNtmAABmADpmAGZmOgBmZgBmZjpmZmZmtttmtv+QOgCQOjqQOmaQZgCQkDqQtpCQ29uQ2/+pqam2ZgC225C2/7a2///bkDrb25Db/7bb/9vb////tmb/25D//7b//9v///8Gq6W0AAAACXBIWXMAAAsSAAALEgHS3X78AAAMRElEQVR4nO3di3baygGGUZJTm6aB+PSC05tLY3pqA37/5ysSkMQFB8m/FINm79VVVk5gFsZfRjNcxOgJAqO3vgNcNgERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARARFJAhpRgh4DCm7LpRAQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQER+akBdflGE87Dzw3oXy0I6CIIiIiAiAiIiICICIhIHNByXO+53983uK2AhicNaH07qy8frx5O31ZAw5MGtLq5f3b5w9sKaHjMQETiNdBqag1UMrswIgIi0sU2/t2dRXSxulhEr28nAipVN9v4+fV3Ab38hh4BDU9H2/jFLx/MQEXqYBs/qS4Wh/t4AZXALoyIgIgIiIiAiMTb+Oluz24RXaZ4BqqeRWx6WwENT34IW326a3pbAQ2PNRARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQkTig5fiFLywUUBHSgNa3s/ry8erh9G0FNDxpQKub+2eXP7ytgIbHDEQkXgPtvrbZGqhQdmFEBETENp6IRTSRHrbxo73D0QQ0OGYgIrbxROzCiAiIiICICIhIvI2f7vbsh6toAZUgnoHWt5PGtxXQ8OSHsNWnu6a3FdDwWAMRERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERCROKDl+IXv3BVQEdKA1rez+vLx6uH0bQU0PGlAq5v7Z5c/vK2AhscMRCReA62m1kAlswsj0kNAo73DvxHQ4HSxjb9eOIQVK15Ef757WlxvOvpoEV2kLrbxi4ltfLHMQES6WANNrIHKZRtPREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREpFFAq+l1J0MLaHgazkCPo9G7u3hoAQ1P80PY+nY0mmVDC2h4Gga0HFcz0JFzuLQaWkDD03ANdHgO1tcMLaDhsQsj0iygx83qZ9F2FS2gEjQ7hH2q2ll+aLMCElAZGgW0PR39kZPRtxxaQMPT7BBWn47+yFnsWg4toOGxiCYiICJNd2EvfKFKu6EFNDwNn0hs9RrGi0MLaHiaBdTqJYyXhxbQ8DQ7hM0nnQwtoOFpeAizBuI4uzAiAiLSLKD17ejqt09eTOVAw9fCJsuPD14L41DTbfwmoLabeQGVoMUMtDADcaDxGmg0avu2VgGVwC6MiICIeCaaSIsZqPp272xoAQ1Pi4Bs4znUIqDHo4ew5filw5uAStBmDXTsXWXbD2wc/ciGgEqQ7sL2x7UjxzcBlSANyAxUuDaHsKMrnZe3+AIqQbMZaHG9/79oaAENT4s31Tfdxo/2Dv9GQIPT9NX4p5dmoOV4Vr3UeuSVVgGVoMWr8Uf7qRbR8806evnRIrpIHWzj15/vbOOLFb8av5l+Hiebbfzh/CSgEuRvqp/XC+YjxzcBlcCb6ol4Uz0Rb6on4k31RLwnmojzAxFptgb63Pabeo4PLaDh8akMIg0Cet0BTEBlaBTQF2sgXtDkEDZ/+f2I7YYW0PDYhRHxPBARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQkTig5filr0EQUAnSgNa3s/ryyFc6C6gEaUD7r9E48nUa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" title="plot of chunk unnamed-chunk-243" alt="plot of chunk unnamed-chunk-243" width="750" /></p>
+
+<pre><code class="r">&gt; Boxplot( ~ HealthExpend, data=btc, id.method=&quot;y&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAJACAMAAABSRCkEAAABUFBMVEUAAAAAAAQAAAoAABcAACQAACgAADoAAEkAAGYAIHsAKJAAMZAAMlEAMnwAOjoAOpAASbYAZrYEAAANAAANDVEXABcXADIXADogAAAhAAAoAAAoAA0oADooFwAoOgAogf8qAAAqFwAqOpAqkNsxAAAyABcykNs6AAA6ACg6ADI6ADo6AEk6AGY6Kjo6MQA6MVE6OmY6Ons6OpA6kJ06kLw6kNs6nP86nf9JADpJAGZJOmZJtv9RMQBRvP9YAA1YABdYtv9mAABmADpmAGZmOgBmOpBmgWZmtv9m2/97OgB7ZgB8OjqB//+QKBeQKgCQMQCQOgCQOjqQOmaQZgCQtpCQ29uQ2/+d//+2SQC2ZgC2/7a2//+8UQ3bfCHbkCrbkDrb25Db/7bb////tkn/tmb/vFH/21j/22b/23v/25D//4H//5z//53//7b//9v///97weSLAAAACXBIWXMAAAsSAAALEgHS3X78AAAOaklEQVR4nO3d+3sb2UHHYVHYECiQhnK/Uy6GdLkFQrkXJ2zNtWTLrsGYxdS4gABZ//9vSCPbcdZSojNfHTRH877PPnWb05Nnxs9nj+boMprMITDZ9wHQNgERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARAREREBEBEREQEQERERARARFJApowBhUDCubSCgERERARAREREBEBEREQEQERERARAREREBEB9TD98HzxH0eTyUn34/H5vg9ojwRU7mqZzOzl6Xz67HT54+LJ5b4PaX8EVOzs0SeLFejq6fK/nkyfX85nr26WoPe+Nn2ABNRD9xC2sFh+7q9Ak/khn/QGAurhJqDr1y8WER1Pbh/BBFQ8XG3usK0Cmh0v+llcBs2vbq6iBVQ8XG3usN3swhZ7sPnVYvlZPox1XAOVDlebO2zLgFb9vLUCjZKAelgGdNG9IfhksaefPDrd9wHtkYCICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICICIiIgIgIiIiAiAiIiICI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" title="plot of chunk unnamed-chunk-244" alt="plot of chunk unnamed-chunk-244" width="750" /></p>
+
+<pre><code> [1] &quot;128&quot; &quot;74&quot;  &quot;46&quot;  &quot;165&quot; &quot;164&quot; &quot;57&quot;  &quot;10&quot;  &quot;182&quot; &quot;62&quot;  &quot;16&quot; 
+</code></pre>
+
+<pre><code class="r">&gt; iqr&lt;-IQR(btc$HealthExpend)
+</code></pre>
+
+<pre><code class="r">&gt; iqr
+</code></pre>
+
+<pre><code>[1] 274.3949
+</code></pre>
+
+<pre><code class="r">&gt; var(btc$HealthExpend)
+</code></pre>
+
+<pre><code>[1] 807493.5
+</code></pre>
+
+<pre><code class="r">&gt; sd(btc$HealthExpend)
+</code></pre>
+
+<pre><code>[1] 898.6064
+</code></pre>
+
+<pre><code class="r">&gt; btc[which(btc$HealthExpend &gt; 1.5*iqr+smm[5]),]
+</code></pre>
+
+<pre><code>           Country Year BadTeeths       GDP HealthExpend SugarComsumption
+9        Australia 2004      0.80 1.7588882    1915.1531           128.77
+10         Austria 2004      1.00 1.9093184    2787.6847           123.29
+16         Belgium 2004      1.10 1.7851105    2677.6519           150.69
+31          Canada 2004      2.10 1.9084635    2132.4034           172.60
+46         Denmark 2004      0.80 2.5153559    3692.8056           158.90
+56         Finland 2004      1.20 1.9955158    2225.7377            93.15
+57          France 2004      1.20 1.6545990    2861.5022           109.59
+62         Germany 2004      0.70 1.7477213    2706.4983           123.29
+65          Greece 2004      2.20 0.7093563    1067.3828            95.89
+74         Iceland 2004      1.40 2.8747448    3714.6547           153.43
+79         Ireland 2004      1.10 2.3244180    2668.2599           115.07
+80          Israel 2004      1.66 1.3292692     880.5043           104.11
+81           Italy 2004      1.10 1.3686293    1952.3460            84.93
+83           Japan 2004      1.70 3.3492305    2352.0917            76.71
+108          Malta 2004      1.60 0.3497126     854.7466           131.51
+121    Netherlands 2004      0.80 1.8887101    2234.8590           142.47
+123    New Zealand 2004      1.60 0.8600206    1571.7167           164.38
+128         Norway 2004      1.70 3.4570313    4542.5184           120.55
+137       Portugal 2004      1.50 0.5165410    1190.6540            93.15
+155       Slovenia 2004      1.80 0.5103941    1032.8624            41.10
+159          Spain 2004      1.12 0.9177162    1413.5989            93.15
+164         Sweden 2004      1.00 2.4800819    2977.2338           128.77
+165    Switzerland 2004      0.86 3.0590985    3213.2000           164.38
+181 United Kingdom 2004      0.70 2.2012674    2392.0480           112.33
+182  United States 2004      1.19 3.1556045    2785.6029           191.78
+    LiteracyRate
+9             NA
+10            NA
+16            NA
+31            NA
+46            NA
+56            NA
+57            NA
+62            NA
+65            NA
+74            NA
+79            NA
+80            NA
+81            NA
+83            NA
+108           NA
+121           NA
+123           NA
+128           NA
+137           NA
+155     99.65247
+159           NA
+164           NA
+165           NA
+181           NA
+182           NA
+</code></pre>
+
+<pre><code class="r">&gt; btc[which(btc$HealthExpend &lt; smm[2]-1.5*iqr),]
+</code></pre>
+
+<pre><code>[1] Country          Year             BadTeeths        GDP             
+[5] HealthExpend     SugarComsumption LiteracyRate    
+&lt;0 rows&gt; (or 0-length row.names)
+</code></pre>
+
+<p>Equivalente al caso GDP pero mucho más extremado. Se normaliza.</p>
+
+<pre><code class="r">&gt; btd&lt;-btc
+</code></pre>
+
+<pre><code class="r">&gt; btd$HealthExpend&lt;- (btc$HealthExpend - mean(btc$HealthExpend)) / sd(btc$HealthExpend)
+</code></pre>
+
+<pre><code class="r">&gt; summary(btd$HealthExpend)
+</code></pre>
+
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-0.5206 -0.5041 -0.4152  0.0000 -0.1988  4.5329 
+</code></pre>
+
+<pre><code class="r">&gt; with(btd, Hist(HealthExpend, scale=&quot;frequency&quot;, breaks=&quot;Sturges&quot;, col=&quot;darkgray&quot;))
+</code></pre>
+
+<p><img src="data:image/png;base64,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zeazW6cjhto4ioDWR4pxi5RRAQ3sZ+wxetQeaL1V9//6py7jj/p5oMe/9TG/q9VYo+ZAY58H2nqrPBNNIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIRECPHt95/8P771f/4fGfzRcn63fV/97bzod+Smv/CejRpIAmfbxDQLP0a0DLs83pPB7P5XL36efVl3/59I+PXzwGdLX+1Nry/N83O6PHq999/rfNJ35WX/3toFMdHAgBPfo1oE0ej+dyed793J2crj919xzQ8vzn8+vl2Ydvt++fr/50jfVXt6NOtnIYBPTocX6z2pmsy1l/tPph8wnrXw9hm47WV1llcrM4Xe1rLtZnIni6+tM11jd0CJulX/ZAm3OcrI9NV+ucvg/oeQ60Po3F5pPJVxdPV//tNcadQugQCOjRrwE97X3OLn5zCPs/AV398+Mxbr0HOv9lfm0PNGffzYGe5jurHc2LAd19/p9VOWcff5n1PF396cbmQHP03SpsfQS7WazXU6v/cH+5WoX9Zg60+JfVLub2w19/+qfnVdi7r897oNXuxyqMSQae7O6gCWhHAnokIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERPK/wDZImv+2cFUAAAAASUVORK5CYII=" title="plot of chunk unnamed-chunk-254" alt="plot of chunk unnamed-chunk-254" width="750" /></p>
+
+<h3>SugarComsumption</h3>
+
+<pre><code class="r">&gt; smm&lt;-summary(btd$SugarComsumption)
+</code></pre>
+
+<pre><code class="r">&gt; smm
+</code></pre>
+
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.48   43.84   90.41   84.72  117.81  191.78 
+</code></pre>
+
+<pre><code class="r">&gt; with(btd, Hist(SugarComsumption, scale=&quot;frequency&quot;, breaks=&quot;Sturges&quot;, col=&quot;darkgray&quot;))
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-257" alt="plot of chunk unnamed-chunk-257" width="750" /></p>
+
+<pre><code class="r">&gt; Boxplot( ~ SugarComsumption, data=btd, id.method=&quot;y&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-258" alt="plot of chunk unnamed-chunk-258" width="750" /></p>
+
+<pre><code class="r">&gt; iqr&lt;-IQR(btd$SugarComsumption)
+</code></pre>
+
+<pre><code class="r">&gt; iqr
+</code></pre>
+
+<pre><code>[1] 73.97
+</code></pre>
+
+<pre><code class="r">&gt; var(btd$SugarComsumption)
+</code></pre>
+
+<pre><code>[1] 2031.187
+</code></pre>
+
+<pre><code class="r">&gt; sd(btd$SugarComsumption)
+</code></pre>
+
+<pre><code>[1] 45.06869
+</code></pre>
+
+<pre><code class="r">&gt; btc[which(btd$SugarComsumption &gt; 1.5*iqr+smm[5]),]
+</code></pre>
+
+<pre><code>[1] Country          Year             BadTeeths        GDP             
+[5] HealthExpend     SugarComsumption LiteracyRate    
+&lt;0 rows&gt; (or 0-length row.names)
+</code></pre>
+
+<pre><code class="r">&gt; btc[which(btd$SugarComsumption &lt; smm[2]-1.5*iqr),]
+</code></pre>
+
+<pre><code>[1] Country          Year             BadTeeths        GDP             
+[5] HealthExpend     SugarComsumption LiteracyRate    
+&lt;0 rows&gt; (or 0-length row.names)
+</code></pre>
+
+<p>Sin outliers. Dispersión homogenea.</p>
+
+<h2>Plots con BadTeeths</h2>
+
+<pre><code class="r">&gt; scatterplot(GDP~BadTeeths, reg.line=FALSE, smooth=FALSE, spread=FALSE, boxplots=FALSE, span=0.5, ellipse=FALSE, 
++   levels=c(.5, .9), data=btd)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-265" alt="plot of chunk unnamed-chunk-265" width="750" /></p>
+
+<pre><code class="r">&gt; scatterplot(SugarComsumption~BadTeeths, reg.line=FALSE, smooth=FALSE, spread=FALSE, boxplots=FALSE, span=0.5, 
++   ellipse=FALSE, levels=c(.5, .9), data=btd)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-266" alt="plot of chunk unnamed-chunk-266" width="750" /></p>
+
+<pre><code class="r">&gt; scatterplot(HealthExpend~BadTeeths, reg.line=FALSE, smooth=FALSE, spread=FALSE, boxplots=FALSE, span=0.5, ellipse=FALSE,
++    levels=c(.5, .9), data=btd)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" title="plot of chunk unnamed-chunk-267" alt="plot of chunk unnamed-chunk-267" width="750" /></p>
+
+<h2>Prueba de regresión lineal múltiple</h2>
+
+<pre><code class="r">&gt; rlin &lt;- lm(BadTeeths ~ GDP + HealthExpend + SugarComsumption, data=btd)
+</code></pre>
+
+<pre><code class="r">&gt; summary(rlin)
+</code></pre>
+
+<pre><code>
+Call:
+lm(formula = BadTeeths ~ GDP + HealthExpend + SugarComsumption, 
+    data = btd)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3319 -0.8536 -0.1183  0.6573  3.7623 
+
+Coefficients:
+                  Estimate Std. Error t value     Pr(&gt;|t|)    
+(Intercept)       1.285081   0.226305   5.679 0.0000000664 ***
+GDP               0.131646   0.239888   0.549     0.583957    
+HealthExpend     -0.615488   0.230505  -2.670     0.008401 ** 
+SugarComsumption  0.009330   0.002436   3.831     0.000186 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.164 on 153 degrees of freedom
+Multiple R-squared:  0.1539,    Adjusted R-squared:  0.1373 
+F-statistic: 9.273 on 3 and 153 DF,  p-value: 0.00001133
+</code></pre>
+
+<p>El coeficiente de bondad del ajuste es 0.1539, bajo, cuanto más cerca de 1 mejor es el modelo.</p>
+
+<pre><code class="r">&gt; rlin2 &lt;- lm(BadTeeths ~ HealthExpend + SugarComsumption, data=btd)
+</code></pre>
+
+<pre><code class="r">&gt; summary(rlin2)
+</code></pre>
+
+<pre><code>
+Call:
+lm(formula = BadTeeths ~ HealthExpend + SugarComsumption, data = btd)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3009 -0.8477 -0.1507  0.6474  3.8260 
+
+Coefficients:
+                  Estimate Std. Error t value     Pr(&gt;|t|)    
+(Intercept)       1.253347   0.218295   5.742 0.0000000485 ***
+HealthExpend     -0.502982   0.105132  -4.784 0.0000039860 ***
+SugarComsumption  0.009705   0.002333   4.160 0.0000526784 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.162 on 154 degrees of freedom
+Multiple R-squared:  0.1522,    Adjusted R-squared:  0.1412 
+F-statistic: 13.82 on 2 and 154 DF,  p-value: 0.000003014
+</code></pre>
+
+<pre><code class="r">&gt; rlin3 &lt;- lm(BadTeeths ~ SugarComsumption, data=btd)
+</code></pre>
+
+<pre><code class="r">&gt; summary(rlin3)
+</code></pre>
+
+<pre><code>
+Call:
+lm(formula = BadTeeths ~ SugarComsumption, data = btd)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.7970 -0.9611 -0.2861  0.7824  3.8728 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      1.694338   0.211391   8.015 2.48e-13 ***
+SugarComsumption 0.004499   0.002204   2.041   0.0429 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.241 on 155 degrees of freedom
+Multiple R-squared:  0.02618,   Adjusted R-squared:  0.01989 
+F-statistic: 4.166 on 1 and 155 DF,  p-value: 0.04293
+</code></pre>
+
+<pre><code class="r">&gt; rlin4 &lt;- lm(BadTeeths ~ GDP, data=btd)
+</code></pre>
+
+<pre><code class="r">&gt; summary(rlin4)
+</code></pre>
+
+<pre><code>
+Call:
+lm(formula = BadTeeths ~ GDP, data = btd)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9134 -0.8969 -0.1685  0.7061  3.8917 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.07554    0.09894  20.978   &lt;2e-16 ***
+GDP         -0.20965    0.09926  -2.112   0.0363 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.24 on 155 degrees of freedom
+Multiple R-squared:  0.02798,   Adjusted R-squared:  0.02171 
+F-statistic: 4.461 on 1 and 155 DF,  p-value: 0.03627
+</code></pre>
+
+<h2>Evaluación del modelo y conclusiones</h2>
+
+<p>Estamos obteniendo unos coeficientes de bondad de los resultados muy bajos, se debería seguir investigando y analizando el caso para intentar mejorar.</p>
+
+</body>
+
+</html>
